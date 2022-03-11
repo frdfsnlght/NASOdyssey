@@ -1,0 +1,4 @@
+python-periphery>=2.3.0
+luma.oled>=3.8.1
+psutil>=5.9.0
+

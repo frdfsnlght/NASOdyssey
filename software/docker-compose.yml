@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  sysmon:
+    image: local/python
+    container_name: sysmon
+    restart: unless-stopped
+    volumes:
+      - /mnt/pool/NASOdyssey/software:/sysmon
+    privileged: true
+    pid: host
+    network_mode: host
+    command: python /sysmon/sysmon.py
+    
