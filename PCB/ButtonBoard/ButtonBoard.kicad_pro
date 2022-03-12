@@ -45,7 +45,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.19999999999999998
+          "min_clearance": 0.508
         }
       },
       "diff_pair_dimensions": [
@@ -347,7 +347,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "ArduinoConnector.kicad_pro",
+    "filename": "ButtonBoard.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -380,9 +380,8 @@
         "microvia_drill": 0.254,
         "name": "Power",
         "nets": [
-          "+5V",
-          "/FAN_GND",
-          "GND"
+          "Net-(J1-Pad1)",
+          "Net-(J2-Pad1)"
         ],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
@@ -401,12 +400,7 @@
         "microvia_diameter": 0.508,
         "microvia_drill": 0.254,
         "name": "Signal",
-        "nets": [
-          "/POWER",
-          "/PWM",
-          "/SENSE",
-          "Net-(R1-Pad2)"
-        ],
+        "nets": [],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.2032,
