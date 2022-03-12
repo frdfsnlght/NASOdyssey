@@ -1,15 +1,15 @@
 
-const bool PWM = true;
 const bool POWER_INVERTED = false;
 const bool PWM_INVERTED = false;
-const bool PWM_ON_POWER = false;
 
 const int POWER_PIN = 11;
 const int SENSE_PIN = 12;
-const int PWM_PIN = 13;
+const int PWM_PIN = 13; // changing this doesn't actually change the PWM pin. See setupPWM.
 
 const int BUFFER_SIZE = 32;
 const int CALC_INTERVAL = 1000;  // milliseconds
+const int MAX_RPM = 8000;
+const int MAX_PWM_PERIOD = 240;
 
 int dutyCycle = 0;
 int pulseCount = 0;
@@ -19,18 +19,78 @@ char buffer[BUFFER_SIZE] = "";
 int bufferPos = 0;
 
 void setup() {
-    Serial.begin(115000);
+    Serial.begin(9600);
     pinMode(POWER_PIN, OUTPUT);
     pinMode(SENSE_PIN, INPUT_PULLUP);
-    pinMode(PWM_PIN, OUTPUT);
     
+    setupPWM();
     setFan();
     
     attachInterrupt(digitalPinToInterrupt(SENSE_PIN), countPulse, FALLING);
     
     interrupts();
     
-    Serial.print("READY\n");
+    Serial.println("READY");
+}
+
+/*
+    We need special PWM handling because computer fans expect a PWM signal with
+    a 25kHz frequency, far beyond the standard 500Hz frequency Arduino Zero's put
+    out. There are no Arduino functions for changing the frequency, so direct
+    port maniuplation is necessary.
+
+    See https://forum.arduino.cc/t/changing-arduino-zero-pwm-frequency/334231/3
+*/
+void setupPWM() {
+    
+    REG_GCLK_GENDIV = GCLK_GENDIV_DIV(4) |          // Divide the 48MHz clock source by divisor 4: 48MHz/4=12MHz
+                      GCLK_GENDIV_ID(4);            // Select Generic Clock (GCLK) 4
+    while (GCLK->STATUS.bit.SYNCBUSY);              // Wait for synchronization
+
+    REG_GCLK_GENCTRL = GCLK_GENCTRL_IDC |           // Set the duty cycle to 50/50 HIGH/LOW
+                       GCLK_GENCTRL_GENEN |         // Enable GCLK4
+                       GCLK_GENCTRL_SRC_DFLL48M |   // Set the 48MHz clock source
+                       GCLK_GENCTRL_ID(4);          // Select GCLK4
+    while (GCLK->STATUS.bit.SYNCBUSY);              // Wait for synchronization
+
+    // To change the PWM pin, these 2 lines need to change. It's complicated. See the linked post.
+    
+    // Enable the port multiplexer for digital pin 13 (D13): timer TCC0 output
+    PORT->Group[g_APinDescription[13].ulPort].PINCFG[g_APinDescription[13].ulPin].bit.PMUXEN = 1;
+  
+    // Connect the TCC0 timer to the port output - port pins are paired odd PMUO and even PMUXE
+    // F & E specify the timers: TCC0, TCC1 and TCC2
+    PORT->Group[g_APinDescription[11].ulPort].PMUX[g_APinDescription[11].ulPin >> 1].reg = PORT_PMUX_PMUXO_F;
+  
+    // Feed GCLK4 to TCC0 and TCC1
+    REG_GCLK_CLKCTRL = GCLK_CLKCTRL_CLKEN |         // Enable GCLK4 to TCC0 and TCC1
+                       GCLK_CLKCTRL_GEN_GCLK4 |     // Select GCLK4
+                       GCLK_CLKCTRL_ID_TCC0_TCC1;   // Feed GCLK4 to TCC0 and TCC1
+    while (GCLK->STATUS.bit.SYNCBUSY);              // Wait for synchronization
+
+    // Dual slope PWM operation: timers countinuously count up to PER register value then down 0
+    REG_TCC0_WAVE |= TCC_WAVE_POL(0xF) |            // Reverse the output polarity on all TCC0 outputs
+                     TCC_WAVE_WAVEGEN_DSBOTTOM;     // Setup dual slope PWM on TCC0
+    while (TCC0->SYNCBUSY.bit.WAVE);                // Wait for synchronization
+
+    // Each timer counts up to a maximum or TOP value set by the PER register,
+    // this determines the frequency of the PWM operation:
+    REG_TCC0_PER = MAX_PWM_PERIOD;                  // Set the frequency of the PWM on TCC0 to 25kHz
+    while(TCC0->SYNCBUSY.bit.PER);
+
+    setPWMDutyCycle(0);
+    
+    // Divide the 12MHz signal by 1 giving 12MHz TCC0 timer tick and enable the outputs
+    REG_TCC0_CTRLA |= TCC_CTRLA_PRESCALER_DIV1 |    // Divide GCLK4 by 1
+                      TCC_CTRLA_ENABLE;             // Enable the TCC0 output
+    while (TCC0->SYNCBUSY.bit.ENABLE);              // Wait for synchronization
+}
+
+void setPWMDutyCycle(int dc) {
+    // 0 <= dc <= MAX_PWM_PERIOD
+    // Set the PWM signal to output duty cycle
+    REG_TCC0_CCB3 = dc;
+    while(TCC0->SYNCBUSY.bit.CCB3);
 }
 
 void loop() {
@@ -46,9 +106,9 @@ void countPulse() {
 }
 
 void readCommand() {
-    while (int ch = Serial.read() != -1) {
-        if (ch == '\r') continue; // ignore carriage return
-        if (ch == '\n') {
+    int ch = Serial.read();
+    while (ch != -1) {
+        if ((ch == '\r') || (ch == '\n')) {
             buffer[bufferPos] = 0;
             if (bufferPos > 0) {
                 processCommand();
@@ -58,9 +118,10 @@ void readCommand() {
             buffer[bufferPos++] = ch;
             if (bufferPos == BUFFER_SIZE) {
                 bufferPos = 0;
-                Serial.print("OVERFLOW\n");
+                Serial.println("OVERFLOW");
             }
         }
+        ch = Serial.read();
     }
 }
 
@@ -69,7 +130,17 @@ void processCommand() {
     int pos = str.indexOf(' ');
     if (pos == -1) {
         // single word commands
-        Serial.print("UNKNOWN COMMAND\n");
+        if (str.equalsIgnoreCase("RPM")) {
+            Serial.print("RPM ");
+            Serial.println(rpm);
+            return;
+        }
+        if (str.equalsIgnoreCase("DUTYCYCLE")) {
+            Serial.print("DUTYCYCLE ");
+            Serial.println(dutyCycle);
+            return;
+        }
+        Serial.println("UNKNOWN COMMAND");
         return;
     }
     String cmd = str.substring(0, pos);
@@ -80,11 +151,12 @@ void processCommand() {
         if ((dc >= 0) && (dc <= 100)) {
             dutyCycle = dc;
             setFan();
+            Serial.println("OK");
         } else
-            Serial.print("INVALID ARGUMENT\n");
+            Serial.println("INVALID ARGUMENT");
         return;
     }
-    Serial.print("UNKNOWN COMMAND\n");
+    Serial.println("UNKNOWN COMMAND");
 }
 
 void calculateRPM() {
@@ -93,51 +165,39 @@ void calculateRPM() {
     lastCalcTime = millis();
     // fans pulse 2 times per revolution
     int newRPM = (int)(30.0f * pps);
+    if (newRPM > MAX_RPM) return;   // bad measurement
     if (newRPM != rpm) {
         rpm = newRPM;
         Serial.print("RPM ");
-        Serial.print(rpm);
-        Serial.print('\n');
+        Serial.println(rpm);
     }
 }
 
 void setFan() {
     if (dutyCycle == 0) {   // fan is off
-        if (POWER_INVERTED)
+        if (POWER_INVERTED) {
             digitalWrite(POWER_PIN, HIGH);
-        else
+        } else {
             digitalWrite(POWER_PIN, LOW);
-        if (PWM) {
-            if (PWM_INVERTED)
-                analogWrite(PWM_PIN, 255);
-            else
-                analogWrite(PWM_PIN, 0);
+        }
+        if (PWM_INVERTED) {
+            setPWMDutyCycle(255);
+        } else {
+            setPWMDutyCycle(0);
         }
         
-    } else if (! PWM) {
-        // just turn the fan on
-        if (POWER_INVERTED)
-            digitalWrite(POWER_PIN, LOW);
-        else
-            digitalWrite(POWER_PIN, HIGH);
-        
     } else {
-        // convert to 0-255
-        int dc = (int)(((float)dutyCycle / 100) * 255.0f);
-        if (PWM_ON_POWER) {
-            if (POWER_INVERTED)
-                analogWrite(POWER_PIN, 255 - dc);
-            else
-                analogWrite(POWER_PIN, dc);
+        // convert to 0-MAX_PWM_PERIOD
+        int dc = (int)(((float)dutyCycle / 100) * (float)MAX_PWM_PERIOD);
+        if (POWER_INVERTED) {
+            digitalWrite(POWER_PIN, LOW);
         } else {
-            if (POWER_INVERTED)
-                digitalWrite(POWER_PIN, LOW);
-            else
-                digitalWrite(POWER_PIN, HIGH);
-            if (PWM_INVERTED)
-                analogWrite(PWM_PIN, 255 - dc);
-            else
-                analogWrite(PWM_PIN, dc);
+            digitalWrite(POWER_PIN, HIGH);
+        }
+        if (PWM_INVERTED) {
+            setPWMDutyCycle(255 - dc);
+        } else {
+            setPWMDutyCycle(dc);
         }
     }
 }

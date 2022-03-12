@@ -1,18 +1,12 @@
 This folder contains the source for the embedded Arduino microcontroller on the Odyssey X86J4125864.
 
-The microcontroller controlls a system fan mainly for cooling the hard drives. The fan is a 5V fan and
+The microcontroller controls a system fan mainly for cooling the hard drives. The fan is a 5V fan and
 can be of the PWM (4 pin) or non-PWM (3 pin) variety. In my design, there is a small PCB plugged into
 the Arduino header and the fan plugs into this board. See the PCB design for more information.
 
 ## Configuration
 
 The sketch can be configured by changing the constants at the top of the file. The interesting options are these:
-
-```
-const bool PWM = true;
-```
-Does the fan support PWM? This should be true even of the fan isn't a PWM fan (4 pin) and you want to use
-PWM on the power pin (this may not work for all fans).
 
 ```
 const bool POWER_INVERTED = false;
@@ -25,17 +19,14 @@ const bool PWM_INVERTED = false;
 Should the PWM pin output be inverted? When set to false, the PWM pin will be set HIGH when at 100% dutycycle.
 
 ```
-const bool PWM_ON_POWER = false;
-```
-This should be true if you're using a non-PWM (3 pin) fan but want to controll it's speed using PWM. When this is true,
-the PWM signal will be output on the power pin instead of the PWM pin. This may not work for all fans.
-
-```
 const int POWER_PIN = 11;
 const int SENSE_PIN = 12;
 const int PWM_PIN = 13;
 ```
 These are the IO pins to use for the various signals. If you connect your fan differently, you may need to change these.
+**NOTE:** If you want to use a different pin for the PWM signal, you can't simply change PWM_PIN. The PWM signalling used
+in the code is at a much lower level than the standard analogWrite Arduino function due to the high frequency required
+by computer fans. See the source code for more information.
 
 ## Building
 
@@ -44,17 +35,27 @@ sketch. Setting up arduino-cli for the Odyssey X86J4125864 is detailed below.
 
 ## Use
 
-With the sketch is running, you can connect to the **/dev/ttyACM0** serial port at 115000bps using a terminal emulator like
-**python -m serial.tools.miniterm /dev/ttyACM0 115000**. There's currently only one command:
+With the sketch is running, you can connect to the **/dev/ttyACM0** serial port at 9600 bps using a terminal emulator like
+**python -m serial.tools.miniterm /dev/ttyACM0**. These are the available commands:
 
 ```
-DUTYCYCLE <n>
+RPM
 ```
+Returns the current RPM speed of the fan in the form **RPM <rpm>** where `<rpm>` is an integer.
 
-Where `<n>` should be a number from 0 to 100 inclusive. Keep in mind most PWM fans don't work under 20% dutycycle. If you're not using PWM (PWM = false), any number
-over 0 will turn the fan on and 0 turns it off.
+```
+DUTYCYCLE
+```
+Returns the current dutycycle of the PWM signal in the form **DUTYCYCLE x** where "x" is an integer.
 
-Whenever the fan speed changes, the RPM will be reported by a **RPM <rpm>** line at about a 1 second interval.
+```
+DUTYCYCLE <dc>
+```
+Sets the dutycycle of the PWM signal where `<dc>` should be a number from 0 to 100 inclusive. Keep in mind most PWM fans don't work
+under 20% dutycycle. If you're not using a PWM fan, any number over 0 will turn the fan on and 0 turns it off.
+After setting the dutycycle, a response of **OK** will be returned.
+
+Whenever the fan speed changes, the RPM will be reported by a **RPM <rpm>** line at most once a second.
 
 ## arduino-cli
 

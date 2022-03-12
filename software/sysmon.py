@@ -39,7 +39,7 @@ fan = Sysmon.ArduinoFan(fanCurve = fanCurve)
 fan.addSensor(disk1)
 fan.addSensor(disk2)
 fan.addSensor(disk3)
-fs = Sysmon.FileSystem('/scripts')
+fs = Sysmon.FileSystem('/sysmon')
 
 ui = LumaUI.Device(device)
 

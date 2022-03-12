@@ -5,7 +5,7 @@ from .Error import Error
 
 class ArduinoFan(Model):
 
-    def __init__(self, port = '/dev/ttyACM0', bps = 115000, minDutyCycle = 20, maxDutyCycle = 100, fanCurve = None, fanOnTemp = 50, historySize = 128):
+    def __init__(self, port = '/dev/ttyACM0', bps = 9600, minDutyCycle = 20, maxDutyCycle = 100, fanCurve = None, fanOnTemp = 50, historySize = 128):
         super().__init__()
 
         self.port = port
@@ -28,6 +28,8 @@ class ArduinoFan(Model):
         self.threadStop = threading.Event()
         self.thread = threading.Thread(target = self.readLoop, name = 'ArduinoFan({})'.format(self.port), daemon = True)
         self.thread.start()
+        self.writeSerial('')
+        self.writeSerial('')
         
     def addSensor(self, model, name = 'temperature'):
         self.sensors.append((model, name))
@@ -58,7 +60,7 @@ class ArduinoFan(Model):
             self.speed = s
             self.notify('speed')
             dc = int(self.minDutyCycle + (s * (self.maxDutyCycle - self.minDutyCycle)))
-            self.serial.write('DUTYCYCLE {}'.format(dc).encode('utf-8'))
+            self.writeSerial('DUTYCYCLE {}'.format(dc))
         
         if self.rpmUpdated.is_set():
             self.rpmUpdated.clear()
@@ -82,6 +84,10 @@ class ArduinoFan(Model):
             return self.historySize
         return 0
 
+    def writeSerial(self, str):
+        #print('TX -> {}'.format(str))
+        self.serial.write((str + "\n").encode('utf-8'))
+        
     def readLoop(self):
         while not self.threadStop.is_set():
             try:
@@ -90,7 +96,7 @@ class ArduinoFan(Model):
                 return
             if line:
                 line = line.decode('utf-8').rstrip("\n")
-                print('got line: {}'.format(line))
+                #print('RX <- {}'.format(line))
                 if line.startswith('RPM '):
                     rpm = int(line[4:])
                     if rpm != self.rpm:
