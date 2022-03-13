@@ -65,7 +65,7 @@ class Widget():
         
     def paintBackground(self):
         if self.backgroundColor:
-            self.image.paste(self.backgroundColor, (0, 0, self.image.size[0]-1, self.image.size[1]-1))
+            self.image.paste(self.backgroundColor, (0, 0, self.image.size[0], self.image.size[1]))
             
     def paintBorder(self):
         if self.borderColor:

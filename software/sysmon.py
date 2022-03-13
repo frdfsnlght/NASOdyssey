@@ -119,7 +119,7 @@ def createUI():
     card = LumaUI.Container()
     ui.add(card)
     y = 0
-    h = 11
+    h = 12
     incr = h + 2
     
     w = LumaUI.Text('Net 1: {}', font = font12, valign = 'center')
