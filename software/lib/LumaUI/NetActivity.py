@@ -24,9 +24,9 @@ class NetActivity(Widget):
 
         self.paintBackground()
         
-        if receiving:
-            draw.rectangle((0, 0, w-1, int(h/2)+1), fill = self.receivingColor)
         if transmitting:
+            draw.rectangle((0, 0, w-1, int(h/2)+1), fill = self.receivingColor)
+        if receiving:
             draw.rectangle((0, int(h/2)+1, w-1, h-1), fill = self.transmittingColor)
 
         self.paintBorder()
