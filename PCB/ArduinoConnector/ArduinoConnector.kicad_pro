@@ -404,8 +404,7 @@
         "nets": [
           "/POWER",
           "/PWM",
-          "/SENSE",
-          "Net-(R1-Pad2)"
+          "/SENSE"
         ],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",

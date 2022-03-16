@@ -2,9 +2,9 @@
 const bool POWER_INVERTED = false;
 const bool PWM_INVERTED = false;
 
-const int POWER_PIN = 11;
-const int SENSE_PIN = 12;
-const int PWM_PIN = 13; // changing this doesn't actually change the PWM pin. See setupPWM.
+const int POWER_PIN = 6;
+const int SENSE_PIN = 7;
+const int PWM_PIN = 8; // changing this doesn't actually change the PWM pin. See setupPWM.
 
 const int BUFFER_SIZE = 32;
 const int CALC_INTERVAL = 1000;  // milliseconds
@@ -55,12 +55,16 @@ void setupPWM() {
 
     // To change the PWM pin, these 2 lines need to change. It's complicated. See the linked post.
     
-    // Enable the port multiplexer for digital pin 13 (D13): timer TCC0 output
-    PORT->Group[g_APinDescription[13].ulPort].PINCFG[g_APinDescription[13].ulPin].bit.PMUXEN = 1;
+    // D13 = PA17 (odd of PA16 (D11)/PA17 (D13) pair)
+    // D8 = PA6 (even of PA06 (D8)/PA07 (D9) pair)
+    
+    // Enable the port multiplexer for digital pin 8 (D8): timer TCC0 output
+    PORT->Group[g_APinDescription[8].ulPort].PINCFG[g_APinDescription[8].ulPin].bit.PMUXEN = 1;
   
-    // Connect the TCC0 timer to the port output - port pins are paired odd PMUO and even PMUXE
-    // F & E specify the timers: TCC0, TCC1 and TCC2
-    PORT->Group[g_APinDescription[11].ulPort].PMUX[g_APinDescription[11].ulPin >> 1].reg = PORT_PMUX_PMUXO_F;
+    // Connect the TCC0 timer to the port output - port pins are paired odd PMUXO and even PMUXE
+    // F = timer TCC0
+    // E = timer TCC1 and TCC2
+    PORT->Group[g_APinDescription[8].ulPort].PMUX[g_APinDescription[8].ulPin >> 1].reg = PORT_PMUX_PMUXE_F;
   
     // Feed GCLK4 to TCC0 and TCC1
     REG_GCLK_CLKCTRL = GCLK_CLKCTRL_CLKEN |         // Enable GCLK4 to TCC0 and TCC1
