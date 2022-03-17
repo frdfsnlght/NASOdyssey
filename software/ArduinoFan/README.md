@@ -19,9 +19,9 @@ const bool PWM_INVERTED = false;
 Should the PWM pin output be inverted? When set to false, the PWM pin will be set HIGH when at 100% dutycycle.
 
 ```
-const int POWER_PIN = 5;
-const int SENSE_PIN = 6;
-const int PWM_PIN = 7;
+const int POWER_PIN = 11;
+const int SENSE_PIN = 12;
+const int PWM_PIN = 13;
 ```
 These are the IO pins to use for the various signals. If you connect your fan differently, you may need to change these.
 **NOTE:** If you want to use a different pin for the PWM signal, you can't simply change PWM_PIN. The PWM signalling used
@@ -55,7 +55,7 @@ Sets the dutycycle of the PWM signal where `<dc>` should be a number from 0 to 1
 under 20% dutycycle. If you're not using a PWM fan, any number over 0 will turn the fan on and 0 turns it off.
 After setting the dutycycle, a response of **OK** will be returned.
 
-Whenever the fan speed changes, the RPM will be reported by a **RPM <rpm>** line at most once a second.
+The fan's RPM will be reported every 5 seconds by a **RPM <rpm>** line.
 
 ## arduino-cli
 
