@@ -3,18 +3,22 @@ const bool POWER_INVERTED = false;
 const bool PWM_INVERTED = false;
 
 const int POWER_PIN = 11;
-const int SENSE_PIN = 1;
-const int PWM_PIN = 13; // changing this doesn't actually change the PWM pin. See setupPWM.
+const int SENSE_PIN = 12;
+const int PWM_PIN = 13;                 // changing this doesn't actually change the PWM pin. See setupPWM.
 
 const int BUFFER_SIZE = 32;
-const int CALC_INTERVAL = 5000;  // milliseconds
-const int MAX_RPM = 8000;
-const int MAX_PWM_PERIOD = 240;
+const int RPM_CALC_INTERVAL = 5000;     // milliseconds
+const int MAX_PWM_PERIOD = 240;         // set for 25kHz
+unsigned long SENSE_DEBOUNCE_TIME = 6;  // milliseconds (6 =~ 2500 rpm max)
 
-int dutyCycle = 0;
-volatile int pulseCount = 0;
-int rpm = 0;
-unsigned long lastCalcTime = 0;
+bool senseState = true;                 // last sense pin input
+bool pulseState = false;                // is the pulse currently high?
+unsigned long lastSenseChange = 0;      // last time the sense pin changed
+int pulseCount = 0;                     // how many pulses have been counted
+unsigned long lastCalcTime = 0;         // last time RPM was calculated
+int rpm = 0;                            // last calculated RPM
+
+int dutyCycle = 100;                    // default to full on
 char buffer[BUFFER_SIZE] = "";
 int bufferPos = 0;
 
@@ -23,10 +27,10 @@ void setup() {
     pinMode(POWER_PIN, OUTPUT);
     pinMode(SENSE_PIN, INPUT_PULLUP);
     
+    digitalWrite(POWER_PIN, HIGH);
+    
     setupPWM();
     setFan();
-    
-    attachInterrupt(digitalPinToInterrupt(SENSE_PIN), countPulse, RISING);
     
     Serial.println("READY");
 }
@@ -84,8 +88,6 @@ void setupPWM() {
     REG_TCC0_PER = MAX_PWM_PERIOD;                  // Set the frequency of the PWM on TCC0 to 25kHz
     while(TCC0->SYNCBUSY.bit.PER);
 
-    setPWMDutyCycle(0);
-    
     // Divide the 12MHz signal by 1 giving 12MHz TCC0 timer tick and enable the outputs
     REG_TCC0_CTRLA |= TCC_CTRLA_PRESCALER_DIV1 |    // Divide GCLK4 by 1
                       TCC_CTRLA_ENABLE;             // Enable the TCC0 output
@@ -100,15 +102,33 @@ void setPWMDutyCycle(int dc) {
 }
 
 void loop() {
+    countPulses();
+
     if (Serial.available() > 0)
         readCommand();
     
-    if ((millis() - lastCalcTime) >= CALC_INTERVAL)
+    if ((millis() - lastCalcTime) >= RPM_CALC_INTERVAL)
         calculateRPM();
 }
 
-void countPulse() {
-    pulseCount++;
+void countPulses() {
+    bool in = digitalRead(SENSE_PIN) == HIGH;
+    if (in != senseState) {
+        lastSenseChange = millis();
+        senseState = in;
+    }
+    
+    if ((millis() - lastSenseChange) > SENSE_DEBOUNCE_TIME) {
+        if (pulseState) {
+            if (! senseState)
+                pulseState = false;
+        } else {
+            if (senseState) {
+                pulseCount++;
+                pulseState = true;
+            }
+        }
+    }
 }
 
 void readCommand() {
@@ -173,20 +193,16 @@ void calculateRPM() {
     
     float pps = (float)pc / sec;
     // fans pulse 2 times per revolution
-    int newRPM = (int)(30.0f * pps);
-    Serial.print("pc=");
-    Serial.print(pc);
-    Serial.print(", pps=");
-    Serial.print(pps);
-    Serial.print(", rpm=");
-    Serial.println(newRPM);
-    return;
-    if (newRPM > MAX_RPM) return;   // bad measurement
-    if (newRPM != rpm) {
-        rpm = newRPM;
-        Serial.print("RPM ");
-        Serial.println(rpm);
-    }
+    rpm = (int)(30.0f * pps);
+    //Serial.print("pc=");
+    //Serial.print(pc);
+    //Serial.print(", pps=");
+    //Serial.print(pps);
+    //Serial.print(", rpm=");
+    //Serial.println(rpm);
+    //return;
+    Serial.print("RPM ");
+    Serial.println(rpm);
 }
 
 void setFan() {
@@ -197,7 +213,7 @@ void setFan() {
             digitalWrite(POWER_PIN, LOW);
         }
         if (PWM_INVERTED) {
-            setPWMDutyCycle(255);
+            setPWMDutyCycle(MAX_PWM_PERIOD);
         } else {
             setPWMDutyCycle(0);
         }
