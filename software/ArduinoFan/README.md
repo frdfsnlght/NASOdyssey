@@ -19,9 +19,9 @@ const bool PWM_INVERTED = false;
 Should the PWM pin output be inverted? When set to false, the PWM pin will be set HIGH when at 100% dutycycle.
 
 ```
-const int POWER_PIN = 11;
-const int SENSE_PIN = 12;
-const int PWM_PIN = 13;
+const int POWER_PIN = 5;
+const int SENSE_PIN = 6;
+const int PWM_PIN = 7;
 ```
 These are the IO pins to use for the various signals. If you connect your fan differently, you may need to change these.
 **NOTE:** If you want to use a different pin for the PWM signal, you can't simply change PWM_PIN. The PWM signalling used

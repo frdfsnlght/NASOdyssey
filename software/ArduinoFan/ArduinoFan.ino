@@ -2,17 +2,17 @@
 const bool POWER_INVERTED = false;
 const bool PWM_INVERTED = false;
 
-const int POWER_PIN = 6;
-const int SENSE_PIN = 7;
-const int PWM_PIN = 8; // changing this doesn't actually change the PWM pin. See setupPWM.
+const int POWER_PIN = 11;
+const int SENSE_PIN = 1;
+const int PWM_PIN = 13; // changing this doesn't actually change the PWM pin. See setupPWM.
 
 const int BUFFER_SIZE = 32;
-const int CALC_INTERVAL = 1000;  // milliseconds
+const int CALC_INTERVAL = 5000;  // milliseconds
 const int MAX_RPM = 8000;
 const int MAX_PWM_PERIOD = 240;
 
 int dutyCycle = 0;
-int pulseCount = 0;
+volatile int pulseCount = 0;
 int rpm = 0;
 unsigned long lastCalcTime = 0;
 char buffer[BUFFER_SIZE] = "";
@@ -26,9 +26,7 @@ void setup() {
     setupPWM();
     setFan();
     
-    attachInterrupt(digitalPinToInterrupt(SENSE_PIN), countPulse, FALLING);
-    
-    interrupts();
+    attachInterrupt(digitalPinToInterrupt(SENSE_PIN), countPulse, RISING);
     
     Serial.println("READY");
 }
@@ -56,15 +54,19 @@ void setupPWM() {
     // To change the PWM pin, these 2 lines need to change. It's complicated. See the linked post.
     
     // D13 = PA17 (odd of PA16 (D11)/PA17 (D13) pair)
-    // D8 = PA6 (even of PA06 (D8)/PA07 (D9) pair)
+    // D7 = PA21 (odd of PA20 (D6)/PA21 (D7) pair)
+    // D8 = PA6 (even of PA06 (D8)/PA07 (D9) pair)  can't get this one to work
     
     // Enable the port multiplexer for digital pin 8 (D8): timer TCC0 output
-    PORT->Group[g_APinDescription[8].ulPort].PINCFG[g_APinDescription[8].ulPin].bit.PMUXEN = 1;
+    //PORT->Group[g_APinDescription[7].ulPort].PINCFG[g_APinDescription[7].ulPin].bit.PMUXEN = 1; // D7
+    PORT->Group[g_APinDescription[13].ulPort].PINCFG[g_APinDescription[13].ulPin].bit.PMUXEN = 1; // D13
   
     // Connect the TCC0 timer to the port output - port pins are paired odd PMUXO and even PMUXE
     // F = timer TCC0
     // E = timer TCC1 and TCC2
-    PORT->Group[g_APinDescription[8].ulPort].PMUX[g_APinDescription[8].ulPin >> 1].reg = PORT_PMUX_PMUXE_F;
+    
+    //PORT->Group[g_APinDescription[6].ulPort].PMUX[g_APinDescription[6].ulPin >> 1].reg = PORT_PMUX_PMUXO_F; // D7
+    PORT->Group[g_APinDescription[11].ulPort].PMUX[g_APinDescription[11].ulPin >> 1].reg = PORT_PMUX_PMUXO_F; // D13
   
     // Feed GCLK4 to TCC0 and TCC1
     REG_GCLK_CLKCTRL = GCLK_CLKCTRL_CLKEN |         // Enable GCLK4 to TCC0 and TCC1
@@ -74,7 +76,7 @@ void setupPWM() {
 
     // Dual slope PWM operation: timers countinuously count up to PER register value then down 0
     REG_TCC0_WAVE |= TCC_WAVE_POL(0xF) |            // Reverse the output polarity on all TCC0 outputs
-                     TCC_WAVE_WAVEGEN_DSBOTTOM;     // Setup dual slope PWM on TCC0
+                     TCC_WAVE_WAVEGEN_DSBOTH;     // Setup dual slope PWM on TCC0
     while (TCC0->SYNCBUSY.bit.WAVE);                // Wait for synchronization
 
     // Each timer counts up to a maximum or TOP value set by the PER register,
@@ -164,11 +166,21 @@ void processCommand() {
 }
 
 void calculateRPM() {
-    float pps = (float)pulseCount / ((float)(millis() - lastCalcTime) / 1000.0f);
+    int pc = pulseCount;
     pulseCount = 0;
+    float sec = (float)(millis() - lastCalcTime) / 1000.0f;
     lastCalcTime = millis();
+    
+    float pps = (float)pc / sec;
     // fans pulse 2 times per revolution
     int newRPM = (int)(30.0f * pps);
+    Serial.print("pc=");
+    Serial.print(pc);
+    Serial.print(", pps=");
+    Serial.print(pps);
+    Serial.print(", rpm=");
+    Serial.println(newRPM);
+    return;
     if (newRPM > MAX_RPM) return;   // bad measurement
     if (newRPM != rpm) {
         rpm = newRPM;
@@ -199,7 +211,7 @@ void setFan() {
             digitalWrite(POWER_PIN, HIGH);
         }
         if (PWM_INVERTED) {
-            setPWMDutyCycle(255 - dc);
+            setPWMDutyCycle(MAX_PWM_PERIOD - dc);
         } else {
             setPWMDutyCycle(dc);
         }
