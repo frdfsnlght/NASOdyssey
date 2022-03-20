@@ -7,6 +7,7 @@ class NetActivity(Widget):
         super().__init__()
         self.model = model
         
+        self.noAddressColor = (128, 128, 128)
         self.receivingColor = '#00ff00'
         self.transmittingColor = '#00ff00'
         self.label = None
@@ -17,17 +18,24 @@ class NetActivity(Widget):
         self.listenToModel(model, 'receiving', 'transmitting')
         
     def paintContent(self, draw):
-        receiving = self.model.getValue('receiving')
+        address = self.model.getValue('address')
         transmitting = self.model.getValue('transmitting')
+        receiving = self.model.getValue('receiving')
         
         w, h = self.size
 
         self.paintBackground()
         
-        if transmitting:
-            draw.rectangle((0, 0, w-1, int(h/2)+1), fill = self.receivingColor)
-        if receiving:
-            draw.rectangle((0, int(h/2)+1, w-1, h-1), fill = self.transmittingColor)
+        if not address is None:
+        
+            if transmitting:
+                draw.rectangle((0, 0, w-1, int(h/2)+1), fill = self.transmittingColor)
+            if receiving:
+                draw.rectangle((0, int(h/2)+1, w-1, h-1), fill = self.receivingColor)
+
+        else:
+            draw.line((1, 1, w-2, h-2), fill = self.noAddressColor)
+            draw.line((w-2, 1, 1, h-2), fill = self.noAddressColor)
 
         self.paintBorder()
         
