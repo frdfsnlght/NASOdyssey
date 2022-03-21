@@ -13,6 +13,8 @@ This NAS is a gift for my father who has modest needs, but I've expanded on Matt
 
 The NAS runs [OpenMediaVault](https://www.openmediavault.org/) and [Docker](https://www.docker.com/) and provides file sharing and basic app server functionality.
 
+The final case measures 6" wide, 7.25" high, and 8.25" deep. The rubber feet on the bottom add about 0.5" to the height.
+
 ## Index
 
 * [Parts](#parts)
@@ -28,7 +30,7 @@ The NAS runs [OpenMediaVault](https://www.openmediavault.org/) and [Docker](http
 
 ## Parts
 
-This is a fairly complete parts list, excluding the [3D printed parts](#3D-Printing) and [nuts and bolts](#Hardware) which are detailed further down. Some substituions are possible.
+This is a fairly complete parts list, excluding the [3D printed parts](#case) and [nuts and bolts](#hardware) which are detailed further down. Some substituions are possible.
 
 | Item | Quantity | Notes |
 | ---- | -------- | ----- |
@@ -36,7 +38,7 @@ This is a fairly complete parts list, excluding the [3D printed parts](#3D-Print
 | [SATA power/data cable](https://www.seeedstudio.com/SATA-26AWG-200mm-p-4680.html) | 3 | |
 | [3.5" SATA drive](https://smile.amazon.com/gp/product/B08VH891FS) | 3 | I used 2TB drives but you can go larger |
 | [SATA Expander](https://smile.amazon.com/gp/product/B07XYSK3QG) | 1 | Adds 2 more SATA ports to the 1 already on the main board |
-| [120mm 5V PWM fan](https://smile.amazon.com/gp/product/B07DXQTCK6) | 1 | Needs to be a 5V fan! |
+| [120mm 5V PWM fan](https://smile.amazon.com/gp/product/B07DXQTCK6) | 1 | Needs to be a 5V fan! Installed to blow **out** the back |
 | [OLED display](https://smile.amazon.com/gp/product/B07DBXMFSN) | 1 | This is a 1.5" RGB SPI display |
 | [USB 3 extension](https://smile.amazon.com/gp/product/B08FLB9Q1N) | 1 | I only used the "right" handed extension |
 | [12V power supply](https://smile.amazon.com/gp/product/B00Z9X4GLW) | 1 | This is a 10A supply which is a little overkill, but you need enough juice to get 3 HDD spinning |
@@ -112,20 +114,31 @@ which were purchased from Amazon.
 There is a 6x25mm light spring used behind the FrontButton to give it a little better feel. It's not required. I don't
 know where to get this spring because I already had a bunch in my stocks. Try your local hardware store.
 
+![Image of spring](spring.jpg)
+
 I used [these rubber feet](https://smile.amazon.com/gp/product/B07R55S3NS/) on the bottom of the case.
+
+The main rods come from Amazon in 180mm lengths. They need to be trimmed a little to 178mm. If you don't trim them, they might stick
+out of the bottom of the case and screw your table if you don't have feet on the case.
 
 ## Electronics
 
-There are 2 custom PCBs used in this project. Al the circuit design and PCB layout is done is [KiCad](https://www.kicad.org/).
+There are 2 custom PCBs used in this project. All the circuit design and PCB layout is done is [KiCad](https://www.kicad.org/).
 The gerber files have been exported and are part of the repository. All the PCBs use surface mount components because I have
 that capability. There's nothing really special about the designs and components used. You could probably roll your own
 designs with through-hole components and tweek the 3D prints a little to compensate.
 
+I had my boards made at [OSHPark](https://oshpark.com/) and I include a project link for each one to allow you to
+order your own. These boards were small enough to automatically get upgraded (i.e., free upgrade after you submit)
+to their "Super Swift" service. I use OSPark for all my projects requiring PCBs.
+
 ### ArduinoConnector
+
+[OSHPark Project](https://oshpark.com/shared_projects/e7hUICRE)
 
 This PCB connects to the Odyssey's built-in Arduino Zero header and is used to control the 120mm case fan. It provides a
 standard 4 pin fan connector. The fan can be a PWM or non-PWM type, but must be 5V (not the more common 12V variety).
-The only 5V PWM fan I could find on Amazon was the Noctua fan linked in the [Parts](#Parts) section.
+The only 5V PWM fan I could find on Amazon was the Noctua fan linked in the [Parts](#parts) section.
 It is not a cheap fan. Noctua also makes a non-PWM version for a little less, but it may still be the most expensive
 fan you'll ever buy.
 
@@ -144,6 +157,8 @@ fan you'll ever buy.
 ![Image of connected ArduinoConnector PCB](ArduinoConnector-connected.jpg)
 
 ### ButtonBoard
+
+[OSHPark Project](https://oshpark.com/shared_projects/wWtjVivs)
 
 The ButtonBoard just has a single surface mount button on it with holes for wires. The wires go to a 2 position female header
 that plugs into pins 39 and 40 of the Raspberry Pi compatible header on the Odyssey board. Polarity doesn't matter.
@@ -184,7 +199,7 @@ The firmware provides a serial interface that can be used to control a fan plugg
 As described in the README, the code will respond to a **DUTYCYCLE** command which will turn on the fan and set it's speed
 through PWM. If a non-PWM fan is used, it will simply turn on at full speed.
 
-The code will turn the fan on full speed when it starts. The [Sysmon](#Sysmon) code will adjust it's speed when it's
+The code will turn the fan on full speed when it starts. The [Sysmon](#sysmon) code will adjust it's speed when it's
 fully started.
 
 ### Sysmon
