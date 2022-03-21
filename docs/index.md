@@ -5,26 +5,26 @@
 ## Introduction
 
 This page and repository documents my design and build of a small NAS server inspired by (but not a fork of) [this project](https://github.com/mattlokes/onash2).
-This NAS is a gift for a relative with modest needs, but I've expanded on Matt's project in a number of ways:
+This NAS is a gift for my father who has modest needs, but I've expanded on Matt's project in a number of ways:
 
 * A different main board since the ODroid H2 is no longer available
-* 3 drives rather than 2 for use with a ZFS setup
+* 3 drives rather than 2 for use with a ZFS array
 * A color OLED display running over SPI for faster, more colorful status screens
 
-The NAS runs [OpenMediaVault](https://www.openmediavault.org/) and [Docker](https://www.docker.com/) and provides file sharing and basic app server functionality
-for my parents.
+The NAS runs [OpenMediaVault](https://www.openmediavault.org/) and [Docker](https://www.docker.com/) and provides file sharing and basic app server functionality.
 
 ## Index
 
-* [Parts](#Parts)
-* [Case](#Case)
-* [Hardware](#Hardware)
-* [Electronics](#Electronics)
-  * [Arduino](#Arduino)
-  * [OLED](#OLED)
-* [Software](#Software)
-  * [ArduinoFan](#ArduinoFan)
-  * [Sysmon](#Sysmon)
+* [Parts](#parts)
+* [Case](#case)
+* [Hardware](#hardware)
+* [Electronics](#electronics)
+  * [Arduino](#arduino)
+  * [OLED](#oled)
+* [Software](#software)
+  * [ArduinoFan](#arduinofan)
+  * [Sysmon](#sysmon)
+* [Picures](#pictures)
 
 ## Parts
 
@@ -217,3 +217,5 @@ usage for the main ZFS pool.
 ![Image of second OLED status](OLED-status-2.jpg)
 
 All of this is changeable if you're willing to do a little coding.
+
+## Pictures
