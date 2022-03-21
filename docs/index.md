@@ -1,4 +1,4 @@
-# NASOdyseey
+# NASOdyssey
 
 ![Image of NASOdyssey](main.jpg)
 
