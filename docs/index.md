@@ -62,7 +62,7 @@ The table below gives some printing detail on each part. Unless noted otherwise,
 | ---- | -------- | -------- | ------ | ---- | ----- |
 | LowerDriveBracket x2 | PETG | No | 30 | 2.5h |
 | UpperDriveBracket x2 | PETG | No | 10 | 1h |
-| UpperShell  | PLA | No  | 228 | 22h |
+| UpperShell  | PLA | No  | 227 | 21h | |
 | LowerShell  | PLA | No  | 189 | 17h  | Honeycomb infill for LowershellGrill |
 | FrontPanel  | PLA | No  | 43  | 3.5h | Honeycomb infill for FrontPanelGrill, extra perimeters around screw holes |
 | RearPanel   | PLA | No  | 35  | 2.5h | Honeycomb infill for RearPanelGrill |
