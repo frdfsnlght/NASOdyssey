@@ -1,15 +1,12 @@
-----
+---
+title: NASOdyssey
 carousels:
   - images: 
     - image: image1.jpg
     - image: image2.jpg
     - image: image3.jpg
     - image: image4.jpg
-----
-
-# NASOdyssey
-
-{% include carousel.html height="50" unit="%" duration="5" number="1" %}
+---
 
 ![Image of NASOdyssey](main.jpg)
 
@@ -153,15 +150,18 @@ The only 5V PWM fan I could find on Amazon was the Noctua fan linked in the [Par
 It is not a cheap fan. Noctua also makes a non-PWM version for a little less, but it may still be the most expensive
 fan you'll ever buy.
 
-![ArduinoConnector schematic](ArduinoConnector-schematic.jpg)
+![ArduinoConnector schematic](ArduinoConnector-schematic.png)
 
-| Component                  | LCSC Part | Mouser Part |
-| ---------                  | --------- | ----------- |
-| NPN transistor, SOT-23     | MMBT100   |             |
-| 1K Resistor, \0805         |           |             |
-| Diode, SMA                 | 1N5819    |             |
-| Arduino header, 2.54mm 2x3 |           |             |
-| Fan header                 |           |             |
+| Component                       | LCSC Part | Mouser Part |
+| ---------                       | --------- | ----------- |
+| NPN transistor, MMBT100, SOT-23 | [C274690](https://lcsc.com/product-detail/Bipolar-Transistors-BJT_onsemi-MMBT100_C274690.html) | [512-MMBT100](https://www.mouser.com/ProductDetail/onsemi-Fairchild/MMBT100?qs=UMEuL5FsraBwiKQ1WMrjpg%3D%3D) |
+| \330 ohm Resistor, \0805        | [C1852181](https://lcsc.com/product-detail/Chip-span-style-background-color-ff0-Resistor-span-Surface-Mount_BOURNS-CR0805-FX-3300ELF_C1852181.html)          | [652-CR0805FX-3300ELF](https://www.mouser.com/ProductDetail/Bourns/CR0805-FX-3300ELF?qs=sGAEpiMZZMvdGkrng054t%2Fh5BnJxeWSzcKgeG4ZYXHA%3D) |
+| Diode, 1N5819, SMA              | [C437199](https://lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_KEXIN-1N5819_C437199.html)    |  |
+| Arduino header, 2.54mm 2x3      | []()          | []()         |
+| Fan header                      |              | []()             |
+
+There's nothing special about the transistor or diode I used. Almost any NPN transistor capable of handling 300mA would do. Same
+for the diode but maybe a little more current handling, say 1A. I just used parts I had on hand.
 
 ![Image of ArduinoConnector PCB](ArduinoConnector-pcb.jpg)
 
