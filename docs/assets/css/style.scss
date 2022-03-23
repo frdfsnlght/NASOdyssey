@@ -1,0 +1,18 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.main-content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+  
+th {
+      background-color: $table-border-color;
+    }

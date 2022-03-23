@@ -1,4 +1,15 @@
+----
+carousels:
+  - images: 
+    - image: image1.jpg
+    - image: image2.jpg
+    - image: image3.jpg
+    - image: image4.jpg
+----
+
 # NASOdyssey
+
+{% include carousel.html height="50" unit="%" duration="5" number="1" %}
 
 ![Image of NASOdyssey](main.jpg)
 
