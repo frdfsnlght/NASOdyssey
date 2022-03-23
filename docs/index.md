@@ -23,6 +23,7 @@ The final case measures 6" wide, 7.25" high, and 8.25" deep. The rubber feet on 
 * [Electronics](#electronics)
   * [Arduino](#arduino)
   * [OLED](#oled)
+* [Assembly](#assembly)
 * [Software](#software)
   * [ArduinoFan](#arduinofan)
   * [Sysmon](#sysmon)
@@ -58,12 +59,12 @@ for a small power button to extend the Odyssey's stupid power button.
 
 The table below gives some printing detail on each part. Unless noted otherwise, infill is 15% gyroid.
 
-| Part | Material | Supports | Weight | Time | Notes |
+| Part | Material | Supports | Weight (g) | Time | Notes |
 | ---- | -------- | -------- | ------ | ---- | ----- |
 | LowerDriveBracket x2 | PETG | No | 30 | 2.5h |
 | UpperDriveBracket x2 | PETG | No | 10 | 1h |
-| UpperShell  | PLA | No  | 227 | 21h | |
-| LowerShell  | PLA | No  | 189 | 17h  | Honeycomb infill for LowershellGrill |
+| UpperShell  | PLA | No  | 228 | 22h | |
+| LowerShell  | PLA | No  | 189 | 17h  | Honeycomb infill for LowerShellGrill |
 | FrontPanel  | PLA | No  | 43  | 3.5h | Honeycomb infill for FrontPanelGrill, extra perimeters around screw holes |
 | RearPanel   | PLA | No  | 35  | 2.5h | Honeycomb infill for RearPanelGrill |
 | CapShell    | PLA | No  | 85  | 5.5h | |
@@ -99,8 +100,7 @@ an external backup drive.
 
 ## Hardware
 
-All the nuts and bolts were purchased from BoltDepot except for the 6 [4mm main rods](https://smile.amazon.com/gp/product/B01LWPOZFV),
-which were purchased from Amazon.
+All the nuts and bolts were purchased from BoltDepot and Amazon.
 
 | Item | Quantity | Used for |
 | [M3x20 machine screw](https://www.boltdepot.com/Controls/6836) | 8 | Mainboard and drive assembly |
@@ -110,6 +110,7 @@ which were purchased from Amazon.
 | [M4 hex nut](https://www.boltdepot.com/Controls/4774) | 12 | Main rods |
 | [\#6x3/8" machine screw](https://www.boltdepot.com/Controls/1335) | 12 | Drives to drive brackets |
 | [\#2x1/8" sheet metal screw](https://www.boltdepot.com/Controls/9862) | 4 | OLEDCover |
+| [4mm x 180mm threaded rods](https://smile.amazon.com/gp/product/B01LWPOZFV) | 6 | Upper/lower shell connection |
 
 There is a 6x25mm light spring used behind the FrontButton to give it a little better feel. It's not required. I don't
 know where to get this spring because I already had a bunch in my stocks. Try your local hardware store.
@@ -118,8 +119,8 @@ know where to get this spring because I already had a bunch in my stocks. Try yo
 
 I used [these rubber feet](https://smile.amazon.com/gp/product/B07R55S3NS/) on the bottom of the case.
 
-The main rods come from Amazon in 180mm lengths. They need to be trimmed a little to 178mm. If you don't trim them, they might stick
-out of the bottom of the case and screw your table if you don't have feet on the case.
+The main rods I got from Amazon are actually "studs" in that they are not completely threaded. You only need threads on the last 5mm of each
+end so you can substitute fully threaded rods if you need to.
 
 ## Electronics
 
@@ -144,13 +145,13 @@ fan you'll ever buy.
 
 ![ArduinoConnector schematic](ArduinoConnector-schematic.jpg)
 
-| Component | LCSC Part | Mouser Part |
-| --------- | --------- | ----------- |
-| Transistor | | |
-| Resistor | | |
-| Diode | | |
-| Arduino header | | |
-| Fan header | | |
+| Component | Footprint | LCSC Part | Mouser Part |
+| --------- | --------- | --------- | ----------- |
+| Transistor | SOT-23   | MMBT100   | |
+| Resistor   | \0805     |           | |
+| Diode      | SMA      | 1N5819    | |
+| Arduino header | 2.54mm 2x3 |           | |
+| Fan header |          |           | |
 
 ![Image of ArduinoConnector PCB](ArduinoConnector-pcb.jpg)
 
@@ -165,11 +166,11 @@ that plugs into pins 39 and 40 of the Raspberry Pi compatible header on the Odys
 The button mounts in the FrontPanel and provides a way for the user to select which status screen is displayed on the OLED
 display (but could be used for anything if you change the software).
 
-| Component | LCSC Part | Mouser Part |
-| --------- | --------- | ----------- |
-| Button | | |
-| Female header | | |
-| Female header pins | | |
+| Component | Footprint | LCSC Part | Mouser Part |
+| --------- | --------- | --------- | ----------- |
+| Button    | SMD       | TS665TP | |
+| Female header | 2.54mm 1x2 |    | |
+| Female header pins | n/a |      | |
 
 ![Image of ButtonBoard PCB](ButtonBoard-pcb.jpg)
 
@@ -185,6 +186,12 @@ to the SPI port.
 
 You can see a 2 position jumper plugged into the header in the picture above. The only purpose of the jumper is to tell me
 where to plug in the OLED display. It can be left in place since it just connects 2 unused IO pins.
+
+## Assembly
+
+TODO
+
+
 
 ## Software
 
