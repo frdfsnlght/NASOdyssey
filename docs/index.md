@@ -2,10 +2,10 @@
 title: NASOdyssey
 carousels:
   - images: 
-    - image: image1.jpg
-    - image: image2.jpg
-    - image: image3.jpg
-    - image: image4.jpg
+    - image: main1.jpg
+    - image: main2.jpg
+    - image: main3.jpg
+    - image: main4.jpg
 ---
 
 ![Image of NASOdyssey](main.jpg)
@@ -31,11 +31,10 @@ The final case measures 6" wide, 7.25" high, and 8.25" deep. The rubber feet on 
 * [Electronics](#electronics)
   * [Arduino](#arduino)
   * [OLED](#oled)
-* [Assembly](#assembly)
 * [Software](#software)
   * [ArduinoFan](#arduinofan)
   * [Sysmon](#sysmon)
-* [Picures](#pictures)
+* [Assembly](#assembly)
 
 ## Parts
 
@@ -92,6 +91,10 @@ and zerod out the top and bottom layers. This gives the effect of an open grill 
 
 ![Image of grill](grill.jpg)
 
+The FrontPanel has 4 small holes on the back, arranged around the place where the OLEDCover installs. Those holes should have
+threads cut into them by heating up the #2 sheet metal screws and screwing them into the holes. Let the screws cool down then
+remove them.
+
 The power button on the Odyssey is a bit strange. It's mounted to the main board such that it doesn't protrude beyond the edge of
 the PCB. This is a problem when mounting the board in a case. I needed the power button to be accessible through the IOPanel,
 so the printed button, with a dab of super-glue, is pressed into the button on the Odyssey. It's printed in clear TPU so the
@@ -121,6 +124,7 @@ All the nuts and bolts were purchased from BoltDepot and Amazon.
 | [\#2x1/8" sheet metal screw](https://www.boltdepot.com/Controls/9862)       | 4        | OLEDCover |
 | [4mm x 180mm threaded rods](https://smile.amazon.com/gp/product/B01LWPOZFV) | 6        | Upper/lower shell connection |
 | [Rubber feet](https://smile.amazon.com/gp/product/B07R55S3NS/)              | 4        | |
+| Small zip tie                                                               | 1        | Securing the USB extension |
 
 There is a 6x25mm light spring used behind the FrontButton to give it a little better feel. It's not required. I don't
 know where to get this spring because I already had a bunch in my stocks. Try your local hardware store.
@@ -155,13 +159,15 @@ fan you'll ever buy.
 | Component                       | LCSC Part | Mouser Part |
 | ---------                       | --------- | ----------- |
 | NPN transistor, MMBT100, SOT-23 | [C274690](https://lcsc.com/product-detail/Bipolar-Transistors-BJT_onsemi-MMBT100_C274690.html) | [512-MMBT100](https://www.mouser.com/ProductDetail/onsemi-Fairchild/MMBT100?qs=UMEuL5FsraBwiKQ1WMrjpg%3D%3D) |
-| \330 ohm Resistor, \0805        | [C1852181](https://lcsc.com/product-detail/Chip-span-style-background-color-ff0-Resistor-span-Surface-Mount_BOURNS-CR0805-FX-3300ELF_C1852181.html)          | [652-CR0805FX-3300ELF](https://www.mouser.com/ProductDetail/Bourns/CR0805-FX-3300ELF?qs=sGAEpiMZZMvdGkrng054t%2Fh5BnJxeWSzcKgeG4ZYXHA%3D) |
-| Diode, 1N5819, SMA              | [C437199](https://lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_KEXIN-1N5819_C437199.html)    |  |
-| Arduino header, 2.54mm 2x3      | []()          | []()         |
-| Fan header                      |              | []()             |
+| 330 ohm Resistor, 0805          | [C1852181](https://lcsc.com/product-detail/Chip-span-style-background-color-ff0-Resistor-span-Surface-Mount_BOURNS-CR0805-FX-3300ELF_C1852181.html) | [652-CR0805FX-3300ELF](https://www.mouser.com/ProductDetail/Bourns/CR0805-FX-3300ELF?qs=sGAEpiMZZMvdGkrng054t%2Fh5BnJxeWSzcKgeG4ZYXHA%3D) |
+| Diode, 1N5819, SMA              | [C437199](https://lcsc.com/product-detail/Schottky-Barrier-Diodes-SBD_KEXIN-1N5819_C437199.html) |  |
+| Arduino header, 2.54mm 2x3      | [C92272](https://lcsc.com/product-detail/Female-Headers_CONNFLY-Elec-DS1023-2-3SF11_C92272.html) | [571-5-534998-3](https://www.mouser.com/ProductDetail/TE-Connectivity/5-534998-3?qs=xDp7PGUNC%252BsJzaB%252By1YUEg%3D%3D) |
+| Fan header                      |              | [538-47053-1000](https://www.mouser.com/ProductDetail/538-47053-1000) |
 
 There's nothing special about the transistor or diode I used. Almost any NPN transistor capable of handling 300mA would do. Same
 for the diode but maybe a little more current handling, say 1A. I just used parts I had on hand.
+
+The Arduino header is just a common 2x3 through-hole female header. You can probably get them on Amazon too.
 
 ![Image of ArduinoConnector PCB](ArduinoConnector-pcb.jpg)
 
@@ -171,28 +177,28 @@ for the diode but maybe a little more current handling, say 1A. I just used part
 
 [OSHPark Project](https://oshpark.com/shared_projects/wWtjVivs)
 
-The ButtonBoard just has a single surface mount button on it with holes for wires. The wires go to a 2 position female header
+The ButtonBoard just has a single surface mount button on it with holes for wires. The wires go to a 2 position female connector
 that plugs into pins 39 and 40 of the Raspberry Pi compatible header on the Odyssey board. Polarity doesn't matter.
 The button mounts in the FrontPanel and provides a way for the user to select which status screen is displayed on the OLED
 display (but could be used for anything if you change the software).
 
 | Component                 | LCSC Part | Mouser Part |
 | ---------                 | --------- | ----------- |
-| Button                    | TS665TP   |             |
-| Female header, 2.54mm 1x2 |           |             |
-| Female header pins        |           |             |
+| Button, TS665TP           | [C412375](https://lcsc.com/product-detail/Tactile-Switches_SHOU-HAN-TS665TP_C412375.html)   | [769-EVP-BT4A4A000](https://www.mouser.com/ProductDetail/Panasonic/EVP-BT4A4A000?qs=CiayqK2gdcJLoreobld9qQ%3D%3D)            |
+
+The button from Mouser is not the same part as from LCSC (which is the one I used). I **think** it will work given the dimensions of
+the solder pads and switch body/stem, but I'm not 100% sure. It might require a different footprint on the PCB.
+
+The female connector is a commonly available "Dupont" connector. I found one with wires ready attached in my box of
+miscellaneous wires and connectors from various PC builds.
 
 ![Image of ButtonBoard PCB](ButtonBoard-pcb.jpg)
 
 ### OLED
 
 The OLED display comes with a wiring harness. I removed the individual female headers on the ends of the wires and snapped the
-ends into an 8 position (2x4) female header. The header plugs into the Raspberry Pi header on the Odyssey so that it connects
-to the SPI port.
-
-| Component                 | LCSC Part | Mouser Part |
-| ---------                 | --------- | ----------- |
-| Female header, 2.54mm 2x4 |           |             |
+ends into an 8 position (2x4) female "Dupont" connector I had from a set of connector I bought on Amazon.
+The header plugs into the Raspberry Pi header on the Odyssey so that it connects to the SPI port.
 
 ![Image of OLED display](OLED.jpg)
 
@@ -200,12 +206,6 @@ to the SPI port.
 
 You can see a 2 position jumper plugged into the header in the picture above. The only purpose of the jumper is to tell me
 where to plug in the OLED display. It can be left in place since it just connects 2 unused IO pins.
-
-## Assembly
-
-TODO
-
-
 
 ## Software
 
@@ -254,4 +254,92 @@ usage for the main ZFS pool.
 
 All of this is changeable if you're willing to do a little coding.
 
-## Pictures
+## Assembly
+
+Before assembly, you should probably bench wire the mainboard and hard drives and get the OS and software installed and running. You
+don't have to but it's better to find out now if something isn't working.
+
+Gather all the printed parts, hardware, and assembled electronics together and follow along.
+
+Prepare the LowerShell
+: With the bottom of the LowerShell facing up, press 4 M3 nuts into the corresponding hex holes in the shell. Do the
+same with 6 M4 nuts in the holes near the edges of the shell. Be careful when pressing the nuts in. Make sure you have
+support under the shell so you don't snap it. I use a small block of wood under the shell, up against the plastic underneath
+and a small phillips screw driver in the hole of each nut to press down. Press 4 M3 nuts into the slots on the insides
+of the drive assembly mounting posts. Use a M3x20 machine screw to make sure each nut is aligned with its hole.
+
+Prepare the UpperShell
+: Like the LowerShell, press 7 M3 nuts into the corresponding hex holes on the inside of the shell.
+
+Assemble the front panel
+: Place the OLED display into the recess on the back/inside of the front panel making sure to remove the stuck on screen
+protector first. Place the FrontButton printed part in the button hole, the spring into the back of the button, and then
+the ButtonBoard PCB into the recess with the wires sticking straight up. Put the wires through the oval hole in the
+OLEDCover part and slide the OLEDCover down into place and secure with 4 #2 sheet metal screws.
+
+Install the USB extension cable
+: Put the female end of the right handed USB extension cable into the recess of the IOPanel. The hole is chamfered to
+allow it to fit. It should press in with a little force. Use the small zip tie around the extension cable up against the
+IOPanel to prevent the extension cable from pulling out of the back of the panel. You may not need this zip tie if the
+extension fits tightly enough.
+
+Assemble the back panel
+: Press the IOPanel into the castellated slots in the back of the RearPanel. It should sort of snap into place. If it's loose,
+use some hot glue or CA glue to secure it. Screw the 120mm fan to the back of the panel using the screws provided with the
+fan. I intended the fan to blow out the back of the case.
+
+Install the RearPanel into the LowerShell
+: Slide the RearPanel into the slot at the back of the LowerShell and make sure it's fully seated.
+
+Prepeare the mainboard
+: Install the M.2 SATA expander in the M.2 slot farthest from the built in SATA port. The built in SATA port will end up
+being /dev/sda. The SATA port on the expander closest to the built in port will be /dev/sdb, and the last port will be
+/dev/sdc. With a dab of CA clue, glue the PowerButton into the power button on the back of the mainboard. Don't put any
+glue on the center-back of the button because you don't want it to stick the LED inside the power button.
+
+Install the mainboard
+: Place the Odyssey mainboard on the four posts in the LowerShell and slide it so the rear ports go through the
+corresponding cutouts in the IOPanel. Drop 4 M3x20 machine screws into the holes in the corner of the mainboard
+and tighten them down. Plug the USB extension into the USB 3 port on the front of the mainboard.
+
+Install the ArduinoConnector PCB
+: Plug the PCB into the Arduino header. Plug the 120mm fan into the fan header on the ArduinoConnector.
+
+Install the FrontPanel into the LowerShell
+: Slide the FrontPanel into the slot at the front of the LowerShell and make sure it's fully seated. Plug the OLED and button cables
+into the Raspberry Pi header.
+
+Tidy up the wiring
+: Make sure all the wiring is tidy and tucked in. Use some zip ties if you have to.
+
+Prepare the hard drives
+: Using the #6x3/8" machine screws, mount the LowerDriveBrackets to the right hand side of the hard drives (when looking at the
+front of the drives). Mount the UpperDriveBrackets to the left side. When looking at the front of the drives, I put labels on them.
+Plug the SATA power/data cables into the backs of the drives.
+
+Install the drive assembly
+: Place the drive assembly into the LowerShell so the LowerDriveBrackets go over the posts on the sides of the LowerShell.
+While doing this, plug the drive's SATA data connectors into the M.2 SATA expander ports keeping in mind which drive will be
+"2" and which will be "3". Route the SATA power and data cables and plug them into the ports on the mainboard. Tidy up
+the wireing and use zip ties if necessary. Drop 4 M3x20 machine screws into the holes in the LowerDriveBrackets and tighten
+them down.
+
+Install main rods
+: Drop each of the 6 4mm rods through the holes in the LowerShell and screw them into the nuts that were pressed into the bottom
+of the LowerShell. I screwed them in so they came past the bottom of the shell, put a dab of Loctite on the threads, then
+unscrewed them so they were flush with the bottom of the shell.
+
+Power up and test
+: At this point, you shold power up and make sure the drives, fan, and OLED are working. Shut it down when you're done.
+
+Install the UpperShell
+: Slide the UpperShell down on the main rods and front/back panels until the rods come out of the top of the UpperShell.
+Put the 6 4mm washers and nuts on the exposed rods and tighten them down. Be careful not to tighten them so much you crush the
+plastic shell. Put 4 M3x12 machine screws through the holes and into the UpperDriveBrackets and tighten them down.
+
+Install the CapShell
+: Place the CapShell on top of the UpperShell. Drop 6 M3x12 machine screws through holes and tighten them down. Place the
+CapCutout in the center and secure it with the last M3x12 screw.
+
+Install the rubber feet
+: Flip the case over and stick the rubber feet on the bottom. Turn it upright again and you're done!
