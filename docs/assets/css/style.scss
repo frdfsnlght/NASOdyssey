@@ -12,7 +12,10 @@
   h6 {
     font-weight: bold;
   }
-  
-th {
-      background-color: $table-border-color;
-    }
+}
+
+table {
+  th {
+    background-color: $table-border-color;
+  }
+}

@@ -42,7 +42,7 @@ The final case measures 6" wide, 7.25" high, and 8.25" deep. The rubber feet on 
 
 ## Parts
 
-This is a fairly complete parts list, excluding the [3D printed parts](#case) and [nuts and bolts](#hardware) which are detailed further down. Some substituions are possible.
+This is a fairly complete parts list, excluding the [3D printed parts](#case), [nuts and bolts](#hardware), and some [electronic](#electronics) bits, all of which are detailed further down. Some substituions are possible.
 
 | Item | Quantity | Notes |
 | ---- | -------- | ----- |
@@ -63,27 +63,27 @@ fits. I'm fairly new to FreeCAD so I don't claim to be an expert and I apologize
 in the modeling.
 
 The parts are printed in 3 different materials: PETG, PLA, and TPU. PETG (Overture) was chosen for the parts that have direct
-contact with the hard drives since they can get quite warm. I used wood PLA (Hatchbox) for everything else because I wanted
-the matte finish and the warmer feeling of the wood. This is the first project I've ever used wood PLA so it gave me an
+contact with the hard drives since they can get quite warm. I used wood PLA (Hatchbox) for all the externally visible parts because
+I wanted the matte finish and the warmer feeling of the wood. This is the first project I've ever used wood PLA so it gave me an
 excuse to upgrade my printer's nozzle to an Olsson Ruby. I love the wood PLA so far. The TPU (SainSmart) is clear and used
-for a small power button to extend the Odyssey's stupid power button.
+for a small power button to extend the stupid one on the Odyssey board.
 
 The table below gives some printing detail on each part. Unless noted otherwise, infill is 15% gyroid.
 
-| Part | Material | Supports | Weight (g) | Time | Notes |
-| ---- | -------- | -------- | ------ | ---- | ----- |
-| LowerDriveBracket x2 | PETG | No | 30 | 2.5h |
-| UpperDriveBracket x2 | PETG | No | 10 | 1h |
-| UpperShell  | PLA | No  | 228 | 22h | |
-| LowerShell  | PLA | No  | 189 | 17h  | Honeycomb infill for LowerShellGrill |
-| FrontPanel  | PLA | No  | 43  | 3.5h | Honeycomb infill for FrontPanelGrill, extra perimeters around screw holes |
-| RearPanel   | PLA | No  | 35  | 2.5h | Honeycomb infill for RearPanelGrill |
-| CapShell    | PLA | No  | 85  | 5.5h | |
-| CapCutout   | PLA | No  | 12  | 1h   | |
-| IOPanel     | PLA | Yes | 12  | 1.5h | |
-| OLEDCover   | PLA | No  | 6   | 35m  | |
-| FrontButton | PLA | Yes | 2   | 11m  | |
-| PowerButton | TPU | No  | <1  | 1m   | Increase perimeters so effectively 100% concentric infill |
+| Part                 | Material | Platform | Supports | Weight (g) | Time | Notes |
+| ----                 | -------- | -------- | -------- | ---------- | ---- | ----- |
+| LowerDriveBracket x2 | PETG     | Smooth   | No       | 30         | 2.5h |       |
+| UpperDriveBracket x2 | PETG     | Smooth   | No       | 10         | 1h   |       |
+| UpperShell           | PLA      | Smooth   | No       | 228        | 22h  |       |
+| LowerShell           | PLA      | Smooth   | No       | 189        | 17h  | Honeycomb infill for LowerShellGrill |
+| FrontPanel           | PLA      | Textured | No       | 43         | 3.5h | Honeycomb infill for FrontPanelGrill, extra perimeters around screw holes |
+| RearPanel            | PLA      | Textured | No       | 35         | 2.5h | Honeycomb infill for RearPanelGrill |
+| CapShell             | PLA      | Textured | No       | 85         | 5.5h |       |
+| CapCutout            | PLA      | Textured | No       | 12         | 1h   |       |
+| IOPanel              | PLA      | Textured | Yes      | 12         | 1.5h |       |
+| OLEDCover            | PLA      | Smooth   | No       | 6          | 35m  | This could be printed in anything since it's inside and not visible |
+| FrontButton          | PLA      | Textured | Yes      | 2          | 11m  |       |
+| PowerButton          | TPU      | Smooth   | No       | <1         | 1m   | Increase perimeters so effectively 100% concentric infill |
 
 All told, it's about 2.5 days of printing. If it matters, I'm using a Prusa MK3S and PrusaSlicer.
 
@@ -113,25 +113,24 @@ an external backup drive.
 
 All the nuts and bolts were purchased from BoltDepot and Amazon.
 
-| Item | Quantity | Used for |
-| [M3x20 machine screw](https://www.boltdepot.com/Controls/6836) | 8 | Mainboard and drive assembly |
-| [M3x12 machine screw](https://www.boltdepot.com/Controls/6833) | 11 | Drive brackets, cap, and cap cutout |
-| [M3 hex nut](https://www.boltdepot.com/Controls/4773) | 19 | All the above |
-| [4mm washer](https://www.boltdepot.com/Controls/4514) | 6 | Main rods |
-| [M4 hex nut](https://www.boltdepot.com/Controls/4774) | 12 | Main rods |
-| [\#6x3/8" machine screw](https://www.boltdepot.com/Controls/1335) | 12 | Drives to drive brackets |
-| [\#2x1/8" sheet metal screw](https://www.boltdepot.com/Controls/9862) | 4 | OLEDCover |
-| [4mm x 180mm threaded rods](https://smile.amazon.com/gp/product/B01LWPOZFV) | 6 | Upper/lower shell connection |
+| Item                                                                        | Quantity | Used for |
+| ----                                                                        | -------- | -------- |
+| [M3x20 machine screw](https://www.boltdepot.com/Controls/6836)              | 8        | Mainboard and drive assembly |
+| [M3x12 machine screw](https://www.boltdepot.com/Controls/6833)              | 11       | Drive brackets, cap, and cap cutout |
+| [M3 hex nut](https://www.boltdepot.com/Controls/4773)                       | 19       | All the above |
+| [4mm washer](https://www.boltdepot.com/Controls/4514)                       | 6        | Main rods |
+| [M4 hex nut](https://www.boltdepot.com/Controls/4774)                       | 12       | Main rods |
+| [\#6x3/8" machine screw](https://www.boltdepot.com/Controls/1335)           | 12       | Drives to drive brackets |
+| [\#2x1/8" sheet metal screw](https://www.boltdepot.com/Controls/9862)       | 4        | OLEDCover |
+| [4mm x 180mm threaded rods](https://smile.amazon.com/gp/product/B01LWPOZFV) | 6        | Upper/lower shell connection |
+| [Rubber feet](https://smile.amazon.com/gp/product/B07R55S3NS/)              | 4        | |
 
 There is a 6x25mm light spring used behind the FrontButton to give it a little better feel. It's not required. I don't
 know where to get this spring because I already had a bunch in my stocks. Try your local hardware store.
 
 ![Image of spring](spring.jpg)
 
-I used [these rubber feet](https://smile.amazon.com/gp/product/B07R55S3NS/) on the bottom of the case.
-
-The main rods I got from Amazon are actually "studs" in that they are not completely threaded. You only need threads on the last 5mm of each
-end so you can substitute fully threaded rods if you need to.
+The main rods I got from Amazon are actually "studs" in that they are not completely threaded. You only need threads on the last 5mm of each end so you can substitute fully threaded rods if you need to.
 
 ## Electronics
 
@@ -142,27 +141,27 @@ designs with through-hole components and tweek the 3D prints a little to compens
 
 I had my boards made at [OSHPark](https://oshpark.com/) and I include a project link for each one to allow you to
 order your own. These boards were small enough to automatically get upgraded (i.e., free upgrade after you submit)
-to their "Super Swift" service. I use OSPark for all my projects requiring PCBs.
+to their "Super Swift" service. I use OSHPark for all my projects requiring PCBs.
 
 ### ArduinoConnector
 
 [OSHPark Project](https://oshpark.com/shared_projects/e7hUICRE)
 
 This PCB connects to the Odyssey's built-in Arduino Zero header and is used to control the 120mm case fan. It provides a
-standard 4 pin fan connector. The fan can be a PWM or non-PWM type, but must be 5V (not the more common 12V variety).
+standard 4 pin fan connector. The fan can be a PWM or non-PWM (3 pin) type, but must be 5V (not the more common 12V variety).
 The only 5V PWM fan I could find on Amazon was the Noctua fan linked in the [Parts](#parts) section.
 It is not a cheap fan. Noctua also makes a non-PWM version for a little less, but it may still be the most expensive
 fan you'll ever buy.
 
 ![ArduinoConnector schematic](ArduinoConnector-schematic.jpg)
 
-| Component | Footprint | LCSC Part | Mouser Part |
-| --------- | --------- | --------- | ----------- |
-| Transistor | SOT-23   | MMBT100   | |
-| Resistor   | \0805     |           | |
-| Diode      | SMA      | 1N5819    | |
-| Arduino header | 2.54mm 2x3 |           | |
-| Fan header |          |           | |
+| Component                  | LCSC Part | Mouser Part |
+| ---------                  | --------- | ----------- |
+| NPN transistor, SOT-23     | MMBT100   |             |
+| 1K Resistor, \0805         |           |             |
+| Diode, SMA                 | 1N5819    |             |
+| Arduino header, 2.54mm 2x3 |           |             |
+| Fan header                 |           |             |
 
 ![Image of ArduinoConnector PCB](ArduinoConnector-pcb.jpg)
 
@@ -177,11 +176,11 @@ that plugs into pins 39 and 40 of the Raspberry Pi compatible header on the Odys
 The button mounts in the FrontPanel and provides a way for the user to select which status screen is displayed on the OLED
 display (but could be used for anything if you change the software).
 
-| Component | Footprint | LCSC Part | Mouser Part |
-| --------- | --------- | --------- | ----------- |
-| Button    | SMD       | TS665TP | |
-| Female header | 2.54mm 1x2 |    | |
-| Female header pins | n/a |      | |
+| Component                 | LCSC Part | Mouser Part |
+| ---------                 | --------- | ----------- |
+| Button                    | TS665TP   |             |
+| Female header, 2.54mm 1x2 |           |             |
+| Female header pins        |           |             |
 
 ![Image of ButtonBoard PCB](ButtonBoard-pcb.jpg)
 
@@ -190,6 +189,10 @@ display (but could be used for anything if you change the software).
 The OLED display comes with a wiring harness. I removed the individual female headers on the ends of the wires and snapped the
 ends into an 8 position (2x4) female header. The header plugs into the Raspberry Pi header on the Odyssey so that it connects
 to the SPI port.
+
+| Component                 | LCSC Part | Mouser Part |
+| ---------                 | --------- | ----------- |
+| Female header, 2.54mm 2x4 |           |             |
 
 ![Image of OLED display](OLED.jpg)
 
