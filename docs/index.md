@@ -43,7 +43,7 @@ This is a fairly complete parts list, excluding the [3D printed parts](#case), [
 | Item | Quantity | Notes |
 | ---- | -------- | ----- |
 | [Odyssey X86J4125864](https://www.seeedstudio.com/ODYSSEY-X86J4125864-p-4916.html) | 1 | Includes 64GB eMMC and 8GB RAM |
-| [SATA power/data cable](https://www.seeedstudio.com/SATA-26AWG-200mm-p-4680.html) | 3 | |
+| [SATA power/data cable](https://www.seeedstudio.com/SATA-26AWG-200mm-p-4680.html) | 3 | The mainboard power connectors are non-standard so these were expedient |
 | [3.5" SATA drive](https://smile.amazon.com/gp/product/B08VH891FS) | 3 | I used 2TB drives but you can go larger |
 | [SATA Expander](https://smile.amazon.com/gp/product/B07XYSK3QG) | 1 | Adds 2 more SATA ports to the 1 already on the main board |
 | [120mm 5V PWM fan](https://smile.amazon.com/gp/product/B07DXQTCK6) | 1 | Needs to be a 5V fan! Installed to blow **out** the back |
@@ -87,7 +87,7 @@ All told, it's about 2.5 days of printing. If it matters, I'm using a Prusa MK3S
 
 The LowerShell, FrontPanel, and BackPanel parts each have an additional associated part and STL. In PrusaSlicer, you can load
 these additional STLs as part modifiers and specify different printing parameters for those volumes. I specified a honeycomb infill
-and zerod out the top and bottom layers. This gives the effect of an open grill as can be seen in the picture.
+and zeroed out the top and bottom layers. This gives the effect of an open grill as can be seen in the picture.
 
 ![Image of grill](grill.jpg)
 
@@ -171,6 +171,10 @@ The Arduino header is just a common 2x3 through-hole female header. You can prob
 
 ![Image of ArduinoConnector PCB](ArduinoConnector-pcb.jpg)
 
+The green rectangle in the image below shows where the PCB plugs into the header.
+
+![Image of ArduinoConnector PCB connection](ArduinoConnector-connection.png)
+
 ![Image of connected ArduinoConnector PCB](ArduinoConnector-connected.jpg)
 
 ### ButtonBoard
@@ -194,6 +198,8 @@ miscellaneous wires and connectors from various PC builds.
 
 ![Image of ButtonBoard PCB](ButtonBoard-pcb.jpg)
 
+The lower green rectangle in the image in the [OLED](#oled) section shows where the connector plugs into the header.
+
 ### OLED
 
 The OLED display comes with a wiring harness. I removed the individual female headers on the ends of the wires and snapped the
@@ -201,6 +207,10 @@ ends into an 8 position (2x4) female "Dupont" connector I had from a set of conn
 The header plugs into the Raspberry Pi header on the Odyssey so that it connects to the SPI port.
 
 ![Image of OLED display](OLED.jpg)
+
+The upper green rectangle in the image below shows where the connector plugs into the header.
+
+![Image of OLED connection](OLED-connection.png)
 
 ![Image of connected OLED display](OLED-connected.jpg)
 
