@@ -322,7 +322,10 @@ into the Raspberry Pi header.
 Tidy up the wiring
 : Make sure all the wiring is tidy and tucked in. Use some zip ties if you have to.
 
-Prepare the hard drives
+Prepare the UpperDriveBrackets
+: Press 4 M3 nuts into the corresponding hex holes in the UpperDriveBrackets, 2 for each bracket.
+
+Assemble the drive assembly
 : Using the #6x3/8" machine screws, mount the LowerDriveBrackets to the right hand side of the hard drives (when looking at the
 front of the drives). Mount the UpperDriveBrackets to the left side. When looking at the front of the drives, I put labels on them.
 Plug the SATA power/data cables into the backs of the drives.
