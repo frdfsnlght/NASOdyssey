@@ -89,6 +89,8 @@ and zeroed out the top and bottom layers. This gives the effect of an open grill
 
 ![Image of grill](grill.jpg)
 
+[![Image of grill](grill.jpg)](grill.jpg)
+
 <img src="grill.jpg" alt="Image of grill" width="63%"/>
 
 The FrontPanel has 4 small holes on the back, arranged around the place where the OLEDCover installs. Those holes should have
