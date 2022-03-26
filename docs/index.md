@@ -87,11 +87,7 @@ The LowerShell, FrontPanel, and BackPanel parts each have an additional associat
 these additional STLs as part modifiers and specify different printing parameters for those volumes. I specified a honeycomb infill
 and zeroed out the top and bottom layers. This gives the effect of an open grill as can be seen in the picture.
 
-![Image of grill](grill.jpg)
-
-[![Image of grill](grill.jpg)](grill.jpg)
-
-<img src="grill.jpg" alt="Image of grill" width="63%"/>
+<a href="grill.jpg"><img src="grill.jpg" alt="Image of grill" width="63%"/></a>
 
 The FrontPanel has 4 small holes on the back, arranged around the place where the OLEDCover installs. Those holes should have
 threads cut into them by heating up the #2 sheet metal screws and screwing them into the holes. Let the screws cool down then
