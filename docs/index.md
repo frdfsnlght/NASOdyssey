@@ -8,8 +8,6 @@ carousels:
     - image: main4.jpg
 ---
 
-![Image of NASOdyssey](main.jpg)
-
 ## Introduction
 
 This page and repository documents my design and build of a small NAS server inspired by (but not a fork of) [this project](https://github.com/mattlokes/onash2).
@@ -91,6 +89,8 @@ and zeroed out the top and bottom layers. This gives the effect of an open grill
 
 ![Image of grill](grill.jpg)
 
+<img src="grill.jpg" alt="Image of grill" width="63%"/>
+
 The FrontPanel has 4 small holes on the back, arranged around the place where the OLEDCover installs. Those holes should have
 threads cut into them by heating up the #2 sheet metal screws and screwing them into the holes. Let the screws cool down then
 remove them.
@@ -98,9 +98,7 @@ remove them.
 The power button on the Odyssey is a bit strange. It's mounted to the main board such that it doesn't protrude beyond the edge of
 the PCB. This is a problem when mounting the board in a case. I needed the power button to be accessible through the IOPanel,
 so the printed button, with a dab of super-glue, is pressed into the button on the Odyssey. It's printed in clear TPU so the
-LED in the power button shines through the printed button.
-
-![Image of power button](powerbutton.jpg)
+LED in the power button shines through the printed button. See the [Assembly](#assembly) section.
 
 The IOPanel is pressed into the RearPanel and sort of snaps into place. You can add some glue if you think you need it. I made
 the IOPanel a seperate piece so I could iterate the design and get the cutouts just right. The far side of the IOPanel includes
@@ -206,7 +204,7 @@ The OLED display comes with a wiring harness. I removed the individual female he
 ends into an 8 position (2x4) female "Dupont" connector I had from a set of connector I bought on Amazon.
 The header plugs into the Raspberry Pi header on the Odyssey so that it connects to the SPI port.
 
-![Image of OLED display](OLED.jpg)
+![Image of OLED display](OLED.jpg) ![Image of OLED display](OLED-connector.jpg)
 
 The upper green rectangle in the image below shows where the connector plugs into the header.
 
@@ -278,8 +276,13 @@ support under the shell so you don't snap it. I use a small block of wood under 
 and a small phillips screw driver in the hole of each nut to press down. Press 4 M3 nuts into the slots on the insides
 of the drive assembly mounting posts. Use a M3x20 machine screw to make sure each nut is aligned with its hole.
 
+![Image of assembly 1](assembly-01.jpg) ![Image of assembly 2](assembly-02.jpg)
+
+
 Prepare the UpperShell
 : Like the LowerShell, press 7 M3 nuts into the corresponding hex holes on the inside of the shell.
+
+![Image of assembly 3](assembly-03.jpg)
 
 Assemble the front panel
 : Place the OLED display into the recess on the back/inside of the front panel making sure to remove the stuck on screen
@@ -287,19 +290,27 @@ protector first. Place the FrontButton printed part in the button hole, the spri
 the ButtonBoard PCB into the recess with the wires sticking straight up. Put the wires through the oval hole in the
 OLEDCover part and slide the OLEDCover down into place and secure with 4 #2 sheet metal screws.
 
+![Image of assembly 4](assembly-04.jpg)
+
 Install the USB extension cable
 : Put the female end of the right handed USB extension cable into the recess of the IOPanel. The hole is chamfered to
 allow it to fit. It should press in with a little force. Use the small zip tie around the extension cable up against the
 IOPanel to prevent the extension cable from pulling out of the back of the panel. You may not need this zip tie if the
 extension fits tightly enough.
 
+![Image of assembly 5](assembly-05.jpg)
+
 Assemble the back panel
 : Press the IOPanel into the castellated slots in the back of the RearPanel. It should sort of snap into place. If it's loose,
 use some hot glue or CA glue to secure it. Screw the 120mm fan to the back of the panel using the screws provided with the
 fan. I intended the fan to blow out the back of the case.
 
+![Image of assembly 6](assembly-06.jpg)
+
 Install the RearPanel into the LowerShell
 : Slide the RearPanel into the slot at the back of the LowerShell and make sure it's fully seated.
+
+![Image of assembly 7](assembly-07.jpg)
 
 Prepeare the mainboard
 : Install the M.2 SATA expander in the M.2 slot farthest from the built in SATA port. The built in SATA port will end up
@@ -307,17 +318,25 @@ being /dev/sda. The SATA port on the expander closest to the built in port will 
 /dev/sdc. With a dab of CA clue, glue the PowerButton into the power button on the back of the mainboard. Don't put any
 glue on the center-back of the button because you don't want it to stick the LED inside the power button.
 
+![Image of assembly 8](assembly-08.jpg)
+
 Install the mainboard
 : Place the Odyssey mainboard on the four posts in the LowerShell and slide it so the rear ports go through the
 corresponding cutouts in the IOPanel. Drop 4 M3x20 machine screws into the holes in the corner of the mainboard
 and tighten them down. Plug the USB extension into the USB 3 port on the front of the mainboard.
 
+![Image of assembly 9](assembly-09.jpg)
+
 Install the ArduinoConnector PCB
 : Plug the PCB into the Arduino header. Plug the 120mm fan into the fan header on the ArduinoConnector.
+
+![Image of assembly 10](assembly-10.jpg)
 
 Install the FrontPanel into the LowerShell
 : Slide the FrontPanel into the slot at the front of the LowerShell and make sure it's fully seated. Plug the OLED and button cables
 into the Raspberry Pi header.
+
+![Image of assembly 11](assembly-11.jpg)
 
 Tidy up the wiring
 : Make sure all the wiring is tidy and tucked in. Use some zip ties if you have to.
@@ -330,12 +349,16 @@ Assemble the drive assembly
 front of the drives). Mount the UpperDriveBrackets to the left side. When looking at the front of the drives, I put labels on them.
 Plug the SATA power/data cables into the backs of the drives.
 
+![Image of assembly 12](assembly-12.jpg)
+
 Install the drive assembly
 : Place the drive assembly into the LowerShell so the LowerDriveBrackets go over the posts on the sides of the LowerShell.
 While doing this, plug the drive's SATA data connectors into the M.2 SATA expander ports keeping in mind which drive will be
 "2" and which will be "3". Route the SATA power and data cables and plug them into the ports on the mainboard. Tidy up
 the wireing and use zip ties if necessary. Drop 4 M3x20 machine screws into the holes in the LowerDriveBrackets and tighten
 them down.
+
+![Image of assembly 13](assembly-13.jpg)
 
 Install main rods
 : Drop each of the 6 4mm rods through the holes in the LowerShell and screw them into the nuts that were pressed into the bottom
@@ -350,9 +373,15 @@ Install the UpperShell
 Put the 6 4mm washers and nuts on the exposed rods and tighten them down. Be careful not to tighten them so much you crush the
 plastic shell. Put 4 M3x12 machine screws through the holes and into the UpperDriveBrackets and tighten them down.
 
+![Image of assembly 14](assembly-14.jpg)
+
 Install the CapShell
 : Place the CapShell on top of the UpperShell. Drop 6 M3x12 machine screws through holes and tighten them down. Place the
 CapCutout in the center and secure it with the last M3x12 screw.
 
+![Image of assembly 15](assembly-15.jpg)
+
 Install the rubber feet
 : Flip the case over and stick the rubber feet on the bottom. Turn it upright again and you're done!
+
+![Image of assembly 16](assembly-16.jpg)
