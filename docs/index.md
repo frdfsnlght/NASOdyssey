@@ -6,6 +6,9 @@ carousels:
     - image: main-2.jpg
     - image: main-3.jpg
     - image: main-4.jpg
+    - image: main-5.jpg
+    - image: main-6.jpg
+    - image: main-7.jpg
 ---
 
 ## Introduction
@@ -168,7 +171,7 @@ The Arduino header is just a common 2x3 through-hole female header. You can prob
 
 The green rectangle in the image below shows where the PCB plugs into the header.
 
-<a href="ArduinoConnector-connection.jpg"><img src="ArduinoConnector-connection.jpg" alt="Image of ArduinoConnector PCB connection" width="40%"/></a>
+![Image of ArduinoConnector PCB connection](ArduinoConnector-connection.png)
 
 <a href="ArduinoConnector-connected.jpg"><img src="ArduinoConnector-connected.jpg" alt="Image of connected ArduinoConnector PCB" width="40%"/></a>
 
@@ -251,11 +254,10 @@ and an "X" if no network address is assigned.
 The graphs update every second with the most recent measurement on the right side. They also shade from green to red as
 usage goes up.
 
-<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="40%"/></a>
-
 The second status screen shows the addresses assigned to each network port, CPU and drive temperatures, and file system
 usage for the main ZFS pool.
 
+<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="40%"/></a>
 <a href="OLED-status-2.jpg"><img src="OLED-status-2.jpg" alt="Image of second OLED status" width="40%"/></a>
 
 All of this is changeable if you're willing to do a little coding.
