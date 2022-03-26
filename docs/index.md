@@ -2,10 +2,10 @@
 title: NASOdyssey
 carousels:
   - images: 
-    - image: main1.jpg
-    - image: main2.jpg
-    - image: main3.jpg
-    - image: main4.jpg
+    - image: main-1.jpg
+    - image: main-2.jpg
+    - image: main-3.jpg
+    - image: main-4.jpg
 ---
 
 ## Introduction
@@ -103,7 +103,7 @@ the IOPanel a seperate piece so I could iterate the design and get the cutouts j
 a structure that the USB extension cable pushes into. This setup gets the USB 3 port to the back panel where it's used for
 an external backup drive.
 
-<a href="iopanel.jpg"><img src="iopanel.jpg" alt="Image of IOPanel" width="63%"/></a>
+<a href="iopanel.jpg"><img src="iopanel.jpg" alt="Image of IOPanel" width="40%"/></a>
 
 ## Hardware
 
@@ -114,7 +114,6 @@ All the nuts and bolts were purchased from BoltDepot and Amazon.
 | [M3x20 machine screw](https://www.boltdepot.com/Controls/6836)              | 8        | Mainboard and drive assembly |
 | [M3x12 machine screw](https://www.boltdepot.com/Controls/6833)              | 11       | Drive brackets, cap, and cap cutout |
 | [M3 hex nut](https://www.boltdepot.com/Controls/4773)                       | 19       | All the above |
-| [4mm washer](https://www.boltdepot.com/Controls/4514)                       | 6        | Main rods |
 | [M4 hex nut](https://www.boltdepot.com/Controls/4774)                       | 12       | Main rods |
 | [\#6x3/8" machine screw](https://www.boltdepot.com/Controls/1335)           | 12       | Drives to drive brackets |
 | [\#2x1/8" sheet metal screw](https://www.boltdepot.com/Controls/9862)       | 4        | OLEDCover |
@@ -125,7 +124,7 @@ All the nuts and bolts were purchased from BoltDepot and Amazon.
 There is a 6x25mm light spring used behind the FrontButton to give it a little better feel. It's not required. I don't
 know where to get this spring because I already had a bunch in my stocks. Try your local hardware store.
 
-<a href="spring.jpg"><img src="spring.jpg" alt="Image of spring" width="63%"/></a>
+<a href="spring.jpg"><img src="spring.jpg" alt="Image of spring" width="40%"/></a>
 
 The main rods I got from Amazon are actually "studs" in that they are not completely threaded. You only need threads on the last 5mm of each end so you can substitute fully threaded rods if you need to.
 
@@ -165,13 +164,13 @@ for the diode but maybe a little more current handling, say 1A. I just used part
 
 The Arduino header is just a common 2x3 through-hole female header. You can probably get them on Amazon too.
 
-<a href="ArduinoConnector-pcb.jpg"><img src="ArduinoConnector-pcb.jpg" alt="Image of ArduinoConnector PCB" width="63%"/></a>
+<a href="ArduinoConnector-pcb.jpg"><img src="ArduinoConnector-pcb.jpg" alt="Image of ArduinoConnector PCB" width="40%"/></a>
 
 The green rectangle in the image below shows where the PCB plugs into the header.
 
-<a href="ArduinoConnector-connection.jpg"><img src="ArduinoConnector-connection.jpg" alt="Image of ArduinoConnector PCB connection" width="63%"/></a>
+<a href="ArduinoConnector-connection.jpg"><img src="ArduinoConnector-connection.jpg" alt="Image of ArduinoConnector PCB connection" width="40%"/></a>
 
-<a href="ArduinoConnector-connected.jpg"><img src="ArduinoConnector-connected.jpg" alt="Image of connected ArduinoConnector PCB" width="63%"/></a>
+<a href="ArduinoConnector-connected.jpg"><img src="ArduinoConnector-connected.jpg" alt="Image of connected ArduinoConnector PCB" width="40%"/></a>
 
 ### ButtonBoard
 
@@ -192,7 +191,7 @@ the solder pads and switch body/stem, but I'm not 100% sure. It might require a 
 The female connector is a commonly available "Dupont" connector. I found one with wires ready attached in my box of
 miscellaneous wires and connectors from various PC builds.
 
-<a href="ButtonBoard-pcb.jpg"><img src="ButtonBoard-pcb.jpg" alt="Image of ButtonBoard PCB" width="63%"/></a>
+<a href="ButtonBoard-pcb.jpg"><img src="ButtonBoard-pcb.jpg" alt="Image of ButtonBoard PCB" width="40%"/></a>
 
 The lower green rectangle in the image in the [OLED](#oled) section shows where the connector plugs into the header.
 
@@ -209,7 +208,7 @@ The upper green rectangle in the image below shows where the connector plugs int
 
 ![Image of OLED connection](OLED-connection.png)
 
-<a href="OLED-connected.jpg"><img src="OLED-connected.jpg" alt="Image of connected OLED display" width="63%"/></a>
+<a href="OLED-connected.jpg"><img src="OLED-connected.jpg" alt="Image of connected OLED display" width="40%"/></a>
 
 You can see a 2 position jumper plugged into the header in the picture above. The only purpose of the jumper is to tell me
 where to plug in the OLED display. It can be left in place since it just connects 2 unused IO pins.
@@ -252,14 +251,12 @@ and an "X" if no network address is assigned.
 The graphs update every second with the most recent measurement on the right side. They also shade from green to red as
 usage goes up.
 
-![Image of first OLED status](OLED-status-1.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="40%"/></a>
 
 The second status screen shows the addresses assigned to each network port, CPU and drive temperatures, and file system
 usage for the main ZFS pool.
 
-![Image of second OLED status](OLED-status-2.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="OLED-status-2.jpg"><img src="OLED-status-2.jpg" alt="Image of second OLED status" width="40%"/></a>
 
 All of this is changeable if you're willing to do a little coding.
 
@@ -277,15 +274,13 @@ support under the shell so you don't snap it. I use a small block of wood under 
 and a small phillips screw driver in the hole of each nut to press down. Press 4 M3 nuts into the slots on the insides
 of the drive assembly mounting posts. Use a M3x20 machine screw to make sure each nut is aligned with its hole.
 
-![Image of assembly 1](assembly-01.jpg) ![Image of assembly 2](assembly-02.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-01.jpg"><img src="assembly-01.jpg" alt="Image of assembly 1" width="40%"/></a>
+<a href="assembly-02.jpg"><img src="assembly-02.jpg" alt="Image of assembly 2" width="40%"/></a>
 
 Prepare the UpperShell
 : Like the LowerShell, press 7 M3 nuts into the corresponding hex holes on the inside of the shell.
 
-![Image of assembly 3](assembly-03.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-03.jpg"><img src="assembly-03.jpg" alt="Image of assembly 3" width="40%"/></a>
 
 Assemble the front panel
 : Place the OLED display into the recess on the back/inside of the front panel making sure to remove the stuck on screen
@@ -293,8 +288,7 @@ protector first. Place the FrontButton printed part in the button hole, the spri
 the ButtonBoard PCB into the recess with the wires sticking straight up. Put the wires through the oval hole in the
 OLEDCover part and slide the OLEDCover down into place and secure with 4 #2 sheet metal screws.
 
-![Image of assembly 4](assembly-04.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-04.jpg"><img src="assembly-04.jpg" alt="Image of assembly 4" width="40%"/></a>
 
 Install the USB extension cable
 : Put the female end of the right handed USB extension cable into the recess of the IOPanel. The hole is chamfered to
@@ -302,22 +296,19 @@ allow it to fit. It should press in with a little force. Use the small zip tie a
 IOPanel to prevent the extension cable from pulling out of the back of the panel. You may not need this zip tie if the
 extension fits tightly enough.
 
-![Image of assembly 5](assembly-05.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-05.jpg"><img src="assembly-05.jpg" alt="Image of assembly 5" width="40%"/></a>
 
 Assemble the back panel
 : Press the IOPanel into the castellated slots in the back of the RearPanel. It should sort of snap into place. If it's loose,
-use some hot glue or CA glue to secure it. Screw the 120mm fan to the back of the panel using the screws provided with the
-fan. I intended the fan to blow out the back of the case.
+use some hot glue or CA glue to secure it. Don't actually screw the 120mm fan to the back of the panel as pictured yet; you'll need it out of the way
+in some of the next steps.
 
-![Image of assembly 6](assembly-06.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-06.jpg"><img src="assembly-06.jpg" alt="Image of assembly 6" width="40%"/></a>
 
 Install the RearPanel into the LowerShell
 : Slide the RearPanel into the slot at the back of the LowerShell and make sure it's fully seated.
 
-![Image of assembly 7](assembly-07.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-07.jpg"><img src="assembly-07.jpg" alt="Image of assembly 7" width="40%"/></a>
 
 Prepeare the mainboard
 : Install the M.2 SATA expander in the M.2 slot farthest from the built in SATA port. The built in SATA port will end up
@@ -325,29 +316,26 @@ being /dev/sda. The SATA port on the expander closest to the built in port will 
 /dev/sdc. With a dab of CA clue, glue the PowerButton into the power button on the back of the mainboard. Don't put any
 glue on the center-back of the button because you don't want it to stick the LED inside the power button.
 
-![Image of assembly 8](assembly-08.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-08.jpg"><img src="assembly-08.jpg" alt="Image of assembly 8" width="40%"/></a>
 
 Install the mainboard
 : Place the Odyssey mainboard on the four posts in the LowerShell and slide it so the rear ports go through the
 corresponding cutouts in the IOPanel. Drop 4 M3x20 machine screws into the holes in the corner of the mainboard
 and tighten them down. Plug the USB extension into the USB 3 port on the front of the mainboard.
 
-![Image of assembly 9](assembly-09.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-09.jpg"><img src="assembly-09.jpg" alt="Image of assembly 9" width="40%"/></a>
 
 Install the ArduinoConnector PCB
-: Plug the PCB into the Arduino header. Plug the 120mm fan into the fan header on the ArduinoConnector.
+: Plug the PCB into the Arduino header. Plug the 120mm fan into the fan header on the ArduinoConnector but don't
+screw the fan in yet.
 
-![Image of assembly 10](assembly-10.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-10.jpg"><img src="assembly-10.jpg" alt="Image of assembly 10" width="40%"/></a>
 
 Install the FrontPanel into the LowerShell
 : Slide the FrontPanel into the slot at the front of the LowerShell and make sure it's fully seated. Plug the OLED and button cables
 into the Raspberry Pi header.
 
-![Image of assembly 11](assembly-11.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-11.jpg"><img src="assembly-11.jpg" alt="Image of assembly 11" width="40%"/></a>
 
 Tidy up the wiring
 : Make sure all the wiring is tidy and tucked in. Use some zip ties if you have to.
@@ -360,43 +348,44 @@ Assemble the drive assembly
 front of the drives). Mount the UpperDriveBrackets to the left side. When looking at the front of the drives, I put labels on them.
 Plug the SATA power/data cables into the backs of the drives.
 
-![Image of assembly 12](assembly-12.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-12.jpg"><img src="assembly-12.jpg" alt="Image of assembly 12" width="40%"/></a>
 
 Install the drive assembly
-: Place the drive assembly into the LowerShell so the LowerDriveBrackets go over the posts on the sides of the LowerShell.
+: This is the trickiest part since space is tight. Keep a eye on connectors and nudge them as necessary.
+Place the drive assembly into the LowerShell so the LowerDriveBrackets go over the posts on the sides of the LowerShell.
 While doing this, plug the drive's SATA data connectors into the M.2 SATA expander ports keeping in mind which drive will be
 "2" and which will be "3". Route the SATA power and data cables and plug them into the ports on the mainboard. Tidy up
 the wireing and use zip ties if necessary. Drop 4 M3x20 machine screws into the holes in the LowerDriveBrackets and tighten
-them down.
+them down. No you can install the 120mm fan using the screws provided with the fan. I intended the fan to blow out the back of the case.
 
-![Image of assembly 13](assembly-13.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-13.jpg"><img src="assembly-13.jpg" alt="Image of assembly 13" width="40%"/></a>
+<a href="assembly-14.jpg"><img src="assembly-14.jpg" alt="Image of assembly 14" width="40%"/></a>
+
+Power up and test
+: At this point, you shold power up and make sure the drives, fan, and OLED are working. Shut it down when you're done.
 
 Install main rods
 : Drop each of the 6 4mm rods through the holes in the LowerShell and screw them into the nuts that were pressed into the bottom
 of the LowerShell. I screwed them in so they came past the bottom of the shell, put a dab of Loctite on the threads, then
 unscrewed them so they were flush with the bottom of the shell.
 
-Power up and test
-: At this point, you shold power up and make sure the drives, fan, and OLED are working. Shut it down when you're done.
-
 Install the UpperShell
-: Slide the UpperShell down on the main rods and front/back panels until the rods come out of the top of the UpperShell.
-Put the 6 4mm washers and nuts on the exposed rods and tighten them down. Be careful not to tighten them so much you crush the
-plastic shell. Put 4 M3x12 machine screws through the holes and into the UpperDriveBrackets and tighten them down.
+: Slide the UpperShell down on the main rods and front/back panels until the rods come out of the top of the UpperShell. There is
+a front and back to the UpperShell; 4 of the holes in the shell should line up with the UpperDriveBrackets.
+Put the 6 4mm nuts on the exposed rods and tighten them down. Be careful not to tighten them so much you crush the
+plastic shell. You'll see 4mm washers on the rods in the photo but I opted to remove them as they interfered with the CapShell.
+Put 4 M3x12 machine screws through the holes and into the UpperDriveBrackets and tighten them down.
 
-![Image of assembly 14](assembly-14.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-15.jpg"><img src="assembly-15.jpg" alt="Image of assembly 15" width="40%"/></a>
 
 Install the CapShell
 : Place the CapShell on top of the UpperShell. Drop 6 M3x12 machine screws through holes and tighten them down. Place the
 CapCutout in the center and secure it with the last M3x12 screw.
 
-![Image of assembly 15](assembly-15.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="assembly-16.jpg"><img src="assembly-16.jpg" alt="Image of assembly 16" width="40%"/></a>
 
 Install the rubber feet
 : Flip the case over and stick the rubber feet on the bottom. Turn it upright again and you're done!
 
-<a href="assembly-16.jpg"><img src="assembly-16.jpg" alt="Image of assembly 16" width="63%"/></a>
+<a href="assembly-17.jpg"><img src="assembly-17.jpg" alt="Image of assembly 17" width="40%"/></a>
+<a href="main-1.jpg"><img src="main-1.jpg" alt="Image of NASOdyssey 1" width="40%"/></a>
