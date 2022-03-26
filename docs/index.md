@@ -87,7 +87,7 @@ The LowerShell, FrontPanel, and BackPanel parts each have an additional associat
 these additional STLs as part modifiers and specify different printing parameters for those volumes. I specified a honeycomb infill
 and zeroed out the top and bottom layers. This gives the effect of an open grill as can be seen in the picture.
 
-<a href="grill.jpg"><img src="grill.jpg" alt="Image of grill" width="40"/></a>
+<a href="grill.jpg"><img src="grill.jpg" alt="Image of grill" width="40%"/></a>
 
 The FrontPanel has 4 small holes on the back, arranged around the place where the OLEDCover installs. Those holes should have
 threads cut into them by heating up the #2 sheet metal screws and screwing them into the holes. Let the screws cool down then
@@ -125,8 +125,7 @@ All the nuts and bolts were purchased from BoltDepot and Amazon.
 There is a 6x25mm light spring used behind the FrontButton to give it a little better feel. It's not required. I don't
 know where to get this spring because I already had a bunch in my stocks. Try your local hardware store.
 
-![Image of spring](spring.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="spring.jpg"><img src="spring.jpg" alt="Image of spring" width="63%"/></a>
 
 The main rods I got from Amazon are actually "studs" in that they are not completely threaded. You only need threads on the last 5mm of each end so you can substitute fully threaded rods if you need to.
 
@@ -152,7 +151,6 @@ It is not a cheap fan. Noctua also makes a non-PWM version for a little less, bu
 fan you'll ever buy.
 
 ![ArduinoConnector schematic](ArduinoConnector-schematic.png)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
 
 | Component                       | LCSC Part | Mouser Part |
 | ---------                       | --------- | ----------- |
@@ -167,16 +165,13 @@ for the diode but maybe a little more current handling, say 1A. I just used part
 
 The Arduino header is just a common 2x3 through-hole female header. You can probably get them on Amazon too.
 
-![Image of ArduinoConnector PCB](ArduinoConnector-pcb.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="ArduinoConnector-pcb.jpg"><img src="ArduinoConnector-pcb.jpg" alt="Image of ArduinoConnector PCB" width="63%"/></a>
 
 The green rectangle in the image below shows where the PCB plugs into the header.
 
-![Image of ArduinoConnector PCB connection](ArduinoConnector-connection.png)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="ArduinoConnector-connection.jpg"><img src="ArduinoConnector-connection.jpg" alt="Image of ArduinoConnector PCB connection" width="63%"/></a>
 
-![Image of connected ArduinoConnector PCB](ArduinoConnector-connected.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="ArduinoConnector-connected.jpg"><img src="ArduinoConnector-connected.jpg" alt="Image of connected ArduinoConnector PCB" width="63%"/></a>
 
 ### ButtonBoard
 
@@ -197,8 +192,7 @@ the solder pads and switch body/stem, but I'm not 100% sure. It might require a 
 The female connector is a commonly available "Dupont" connector. I found one with wires ready attached in my box of
 miscellaneous wires and connectors from various PC builds.
 
-![Image of ButtonBoard PCB](ButtonBoard-pcb.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="ButtonBoard-pcb.jpg"><img src="ButtonBoard-pcb.jpg" alt="Image of ButtonBoard PCB" width="63%"/></a>
 
 The lower green rectangle in the image in the [OLED](#oled) section shows where the connector plugs into the header.
 
@@ -208,15 +202,14 @@ The OLED display comes with a wiring harness. I removed the individual female he
 ends into an 8 position (2x4) female "Dupont" connector I had from a set of connector I bought on Amazon.
 The header plugs into the Raspberry Pi header on the Odyssey so that it connects to the SPI port.
 
-![Image of OLED display](OLED.jpg) ![Image of OLED display](OLED-connector.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="OLED.jpg"><img src="OLED.jpg" alt="Image of OLED display" width="40%"/></a>
+<a href="OLED-connector.jpg"><img src="OLED-connector.jpg" alt="Image of OLED connector" width="40%"/></a>
 
 The upper green rectangle in the image below shows where the connector plugs into the header.
 
 ![Image of OLED connection](OLED-connection.png)
 
-![Image of connected OLED display](OLED-connected.jpg)
-<a href=".jpg"><img src=".jpg" alt="Image of " width="63%"/></a>
+<a href="OLED-connected.jpg"><img src="OLED-connected.jpg" alt="Image of connected OLED display" width="63%"/></a>
 
 You can see a 2 position jumper plugged into the header in the picture above. The only purpose of the jumper is to tell me
 where to plug in the OLED display. It can be left in place since it just connects 2 unused IO pins.
