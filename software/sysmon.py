@@ -1,6 +1,6 @@
 #!/usr/local/bin/python
 
-import sys, os, time
+import sys, os, time, signal
 from luma.core.interface.serial import spi
 from luma.oled.device import ssd1351
 from PIL import ImageFont
@@ -13,7 +13,6 @@ import PeripheryGPIO as GPIO
 LOOP_INTERVAL = 0.2
 BUTTON_PIN = 21 # 21 BCM, 40 board
 
-#serial = spi(port = 1, device = 0, gpio = GPIO, gpio_RST = 23)
 serial = spi(port = 1, device = 0, gpio = GPIO)
 device = ssd1351(serial, bgr = True, rotate = 0)
 
@@ -42,6 +41,7 @@ fan.addSensor(disk3)
 fs = Sysmon.FileSystem('/sysmon')
 
 ui = LumaUI.Device(device)
+waitCard = LumaUI.Container()
 
 # special Text subcalss to change background to red if ZFS isn't 'ONLINE'
 class ZFSStatus(LumaUI.Text):
@@ -181,12 +181,30 @@ def createUI():
     w.size = (110, h)
     card.add(w)
 
+    # =========
+    # Wait card
 
+    ui.add(waitCard)
+    waitCard.hidden = True
+    w = LumaUI.Text('Please Wait...', font = font16, halign = 'center', valign = 'center')
+    w.position = (0, 0)
+    w.size = (128, 128)
+    waitCard.add(w)
+    
+def shutdown(signal = None, frame = None):
+    waitCard.hidden = False
+    ui.card = waitCard
+    ui.paint()
+    time.sleep(1)
+    sys.exit(0)
+        
 if __name__ == '__main__':
     createUI()
 
     GPIO.setup(BUTTON_PIN, direction = GPIO.IN, pull_up_down = GPIO.PUD_UP)
     buttonUp = True
+    
+    signal.signal(signal.SIGTERM, shutdown)
     
     try:
         while True:
@@ -199,10 +217,11 @@ if __name__ == '__main__':
                     buttonUp = True
             elif buttonUp:
                 buttonUp = False
+                print("button pressed")
                 ui.nextCard()
             
             time.sleep(LOOP_INTERVAL)
     except KeyboardInterrupt:
         print()
-        sys.exit(0)
+    shutdown()
         
