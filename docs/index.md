@@ -82,7 +82,8 @@ The table below gives some printing detail on each part. Unless noted otherwise,
 | FrontButton          | PLA      | Textured | Yes      | 2          | 11m  |       |
 | PowerButton          | TPU      | Smooth   | No       | <1         | 1m   | Increase perimeters so effectively 100% concentric infill |
 
-All told, it's about 2.5 days of printing. If it matters, I'm using a Prusa MK3S and PrusaSlicer.
+All told, it's about 2.5 days of printing and less than 3/4 of a 1kg spool of filiment.
+If it matters, I'm using a Prusa MK3S and PrusaSlicer.
 
 ### Additional notes
 
@@ -257,8 +258,8 @@ usage goes up.
 The second status screen shows the addresses assigned to each network port, CPU and drive temperatures, and file system
 usage for the main ZFS pool.
 
-<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="40%"/></a>
-<a href="OLED-status-2.jpg"><img src="OLED-status-2.jpg" alt="Image of second OLED status" width="40%"/></a>
+<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="50%"/></a>
+<a href="OLED-status-2.jpg"><img src="OLED-status-2.jpg" alt="Image of second OLED status" width="50%"/></a>
 
 All of this is changeable if you're willing to do a little coding.
 
@@ -276,13 +277,13 @@ support under the shell so you don't snap it. I use a small block of wood under 
 and a small phillips screw driver in the hole of each nut to press down. Press 4 M3 nuts into the slots on the insides
 of the drive assembly mounting posts. Use a M3x20 machine screw to make sure each nut is aligned with its hole.
 
-<a href="assembly-01.jpg"><img src="assembly-01.jpg" alt="Image of assembly 1" width="40%"/></a>
+: <a href="assembly-01.jpg"><img src="assembly-01.jpg" alt="Image of assembly 1" width="40%"/></a>
 <a href="assembly-02.jpg"><img src="assembly-02.jpg" alt="Image of assembly 2" width="40%"/></a>
 
 Prepare the UpperShell
 : Like the LowerShell, press 7 M3 nuts into the corresponding hex holes on the inside of the shell.
 
-<a href="assembly-03.jpg"><img src="assembly-03.jpg" alt="Image of assembly 3" width="40%"/></a>
+: <a href="assembly-03.jpg"><img src="assembly-03.jpg" alt="Image of assembly 3" width="40%"/></a>
 
 Assemble the front panel
 : Place the OLED display into the recess on the back/inside of the front panel making sure to remove the stuck on screen
@@ -316,7 +317,10 @@ Prepeare the mainboard
 : Install the M.2 SATA expander in the M.2 slot farthest from the built in SATA port. The built in SATA port will end up
 being /dev/sda. The SATA port on the expander closest to the built in port will be /dev/sdb, and the last port will be
 /dev/sdc. With a dab of CA clue, glue the PowerButton into the power button on the back of the mainboard. Don't put any
-glue on the center-back of the button because you don't want it to stick the LED inside the power button.
+glue on the center-back of the button because you don't want it to stick the LED inside the power button. Also, don't forget
+to plug the included battery into the "RTC" header near the center of the mainboard. Without the battery, CMOS settings and time
+won't be saved if you pull the power plug. You won't see the battery in the pictures because I forgot to plug
+it in during initial assembly.
 
 <a href="assembly-08.jpg"><img src="assembly-08.jpg" alt="Image of assembly 8" width="40%"/></a>
 
