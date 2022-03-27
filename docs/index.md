@@ -255,11 +255,11 @@ and an "X" if no network address is assigned.
 The graphs update every second with the most recent measurement on the right side. They also shade from green to red as
 usage goes up.
 
-The second status screen shows the addresses assigned to each network port, CPU and drive temperatures, and file system
+The second status screen shows the addresses assigned to each network port, CPU and drive temperatures, fan speed, and file system
 usage for the main ZFS pool.
 
-<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="50%"/></a>
-<a href="OLED-status-2.jpg"><img src="OLED-status-2.jpg" alt="Image of second OLED status" width="50%"/></a>
+<a href="OLED-status-1.jpg"><img src="OLED-status-1.jpg" alt="Image of first OLED status" width="25%"/></a>
+<a href="OLED-status-2.jpg"><img src="OLED-status-2.jpg" alt="Image of second OLED status" width="25%"/></a>
 
 All of this is changeable if you're willing to do a little coding.
 
@@ -291,7 +291,7 @@ protector first. Place the FrontButton printed part in the button hole, the spri
 the ButtonBoard PCB into the recess with the wires sticking straight up. Put the wires through the oval hole in the
 OLEDCover part and slide the OLEDCover down into place and secure with 4 #2 sheet metal screws.
 
-<a href="assembly-04.jpg"><img src="assembly-04.jpg" alt="Image of assembly 4" width="40%"/></a>
+: <a href="assembly-04.jpg"><img src="assembly-04.jpg" alt="Image of assembly 4" width="40%"/></a>
 
 Install the USB extension cable
 : Put the female end of the right handed USB extension cable into the recess of the IOPanel. The hole is chamfered to
@@ -299,19 +299,19 @@ allow it to fit. It should press in with a little force. Use the small zip tie a
 IOPanel to prevent the extension cable from pulling out of the back of the panel. You may not need this zip tie if the
 extension fits tightly enough.
 
-<a href="assembly-05.jpg"><img src="assembly-05.jpg" alt="Image of assembly 5" width="40%"/></a>
+: <a href="assembly-05.jpg"><img src="assembly-05.jpg" alt="Image of assembly 5" width="40%"/></a>
 
 Assemble the back panel
 : Press the IOPanel into the castellated slots in the back of the RearPanel. It should sort of snap into place. If it's loose,
 use some hot glue or CA glue to secure it. Don't actually screw the 120mm fan to the back of the panel as pictured yet; you'll need it out of the way
 in some of the next steps.
 
-<a href="assembly-06.jpg"><img src="assembly-06.jpg" alt="Image of assembly 6" width="40%"/></a>
+: <a href="assembly-06.jpg"><img src="assembly-06.jpg" alt="Image of assembly 6" width="40%"/></a>
 
 Install the RearPanel into the LowerShell
 : Slide the RearPanel into the slot at the back of the LowerShell and make sure it's fully seated.
 
-<a href="assembly-07.jpg"><img src="assembly-07.jpg" alt="Image of assembly 7" width="40%"/></a>
+: <a href="assembly-07.jpg"><img src="assembly-07.jpg" alt="Image of assembly 7" width="40%"/></a>
 
 Prepeare the mainboard
 : Install the M.2 SATA expander in the M.2 slot farthest from the built in SATA port. The built in SATA port will end up
@@ -322,26 +322,26 @@ to plug the included battery into the "RTC" header near the center of the mainbo
 won't be saved if you pull the power plug. You won't see the battery in the pictures because I forgot to plug
 it in during initial assembly.
 
-<a href="assembly-08.jpg"><img src="assembly-08.jpg" alt="Image of assembly 8" width="40%"/></a>
+: <a href="assembly-08.jpg"><img src="assembly-08.jpg" alt="Image of assembly 8" width="40%"/></a>
 
 Install the mainboard
 : Place the Odyssey mainboard on the four posts in the LowerShell and slide it so the rear ports go through the
 corresponding cutouts in the IOPanel. Drop 4 M3x20 machine screws into the holes in the corner of the mainboard
 and tighten them down. Plug the USB extension into the USB 3 port on the front of the mainboard.
 
-<a href="assembly-09.jpg"><img src="assembly-09.jpg" alt="Image of assembly 9" width="40%"/></a>
+: <a href="assembly-09.jpg"><img src="assembly-09.jpg" alt="Image of assembly 9" width="40%"/></a>
 
 Install the ArduinoConnector PCB
 : Plug the PCB into the Arduino header. Plug the 120mm fan into the fan header on the ArduinoConnector but don't
 screw the fan in yet.
 
-<a href="assembly-10.jpg"><img src="assembly-10.jpg" alt="Image of assembly 10" width="40%"/></a>
+: <a href="assembly-10.jpg"><img src="assembly-10.jpg" alt="Image of assembly 10" width="40%"/></a>
 
 Install the FrontPanel into the LowerShell
 : Slide the FrontPanel into the slot at the front of the LowerShell and make sure it's fully seated. Plug the OLED and button cables
 into the Raspberry Pi header.
 
-<a href="assembly-11.jpg"><img src="assembly-11.jpg" alt="Image of assembly 11" width="40%"/></a>
+: <a href="assembly-11.jpg"><img src="assembly-11.jpg" alt="Image of assembly 11" width="40%"/></a>
 
 Tidy up the wiring
 : Make sure all the wiring is tidy and tucked in. Use some zip ties if you have to.
@@ -354,7 +354,7 @@ Assemble the drive assembly
 front of the drives). Mount the UpperDriveBrackets to the left side. When looking at the front of the drives, I put labels on them.
 Plug the SATA power/data cables into the backs of the drives.
 
-<a href="assembly-12.jpg"><img src="assembly-12.jpg" alt="Image of assembly 12" width="40%"/></a>
+: <a href="assembly-12.jpg"><img src="assembly-12.jpg" alt="Image of assembly 12" width="40%"/></a>
 
 Install the drive assembly
 : This is the trickiest part since space is tight. Keep a eye on connectors and nudge them as necessary.
@@ -364,7 +364,7 @@ While doing this, plug the drive's SATA data connectors into the M.2 SATA expand
 the wireing and use zip ties if necessary. Drop 4 M3x20 machine screws into the holes in the LowerDriveBrackets and tighten
 them down. No you can install the 120mm fan using the screws provided with the fan. I intended the fan to blow out the back of the case.
 
-<a href="assembly-13.jpg"><img src="assembly-13.jpg" alt="Image of assembly 13" width="40%"/></a>
+: <a href="assembly-13.jpg"><img src="assembly-13.jpg" alt="Image of assembly 13" width="40%"/></a>
 <a href="assembly-14.jpg"><img src="assembly-14.jpg" alt="Image of assembly 14" width="40%"/></a>
 
 Power up and test
@@ -382,16 +382,16 @@ Put the 6 4mm nuts on the exposed rods and tighten them down. Be careful not to 
 plastic shell. You'll see 4mm washers on the rods in the photo but I opted to remove them as they interfered with the CapShell.
 Put 4 M3x12 machine screws through the holes and into the UpperDriveBrackets and tighten them down.
 
-<a href="assembly-15.jpg"><img src="assembly-15.jpg" alt="Image of assembly 15" width="40%"/></a>
+: <a href="assembly-15.jpg"><img src="assembly-15.jpg" alt="Image of assembly 15" width="40%"/></a>
 
 Install the CapShell
 : Place the CapShell on top of the UpperShell. Drop 6 M3x12 machine screws through holes and tighten them down. Place the
 CapCutout in the center and secure it with the last M3x12 screw.
 
-<a href="assembly-16.jpg"><img src="assembly-16.jpg" alt="Image of assembly 16" width="40%"/></a>
+: <a href="assembly-16.jpg"><img src="assembly-16.jpg" alt="Image of assembly 16" width="40%"/></a>
 
 Install the rubber feet
 : Flip the case over and stick the rubber feet on the bottom. Turn it upright again and you're done!
 
-<a href="assembly-17.jpg"><img src="assembly-17.jpg" alt="Image of assembly 17" width="40%"/></a>
+: <a href="assembly-17.jpg"><img src="assembly-17.jpg" alt="Image of assembly 17" width="40%"/></a>
 <a href="main-1.jpg"><img src="main-1.jpg" alt="Image of NASOdyssey 1" width="40%"/></a>
