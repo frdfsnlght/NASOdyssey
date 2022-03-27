@@ -11,5 +11,5 @@ services:
     privileged: true
     pid: host
     network_mode: host
-    command: python /sysmon/sysmon.py
+    command: ["python", "/sysmon/sysmon.py"]
     
