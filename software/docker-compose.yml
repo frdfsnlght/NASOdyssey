@@ -8,6 +8,7 @@ services:
     restart: unless-stopped
     volumes:
       - /mnt/pool/NASOdyssey/software:/sysmon
+      - /mnt/pool/export:/export
     privileged: true
     pid: host
     network_mode: host
