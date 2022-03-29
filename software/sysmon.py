@@ -15,6 +15,7 @@ BUTTON_PIN = 21 # 21 BCM, 40 board
 
 serial = spi(port = 1, device = 0, gpio = GPIO)
 device = ssd1351(serial, bgr = True, rotate = 0)
+device.persist = True # prevents clearing the screen during shutdown
 
 font12 = ImageFont.truetype(os.path.join(os.path.dirname(__file__), 'fonts', 'AltonaSans-Regular.ttf'), 12)
 font16 = ImageFont.truetype(os.path.join(os.path.dirname(__file__), 'fonts', 'AltonaSans-Regular.ttf'), 16)
@@ -55,6 +56,9 @@ class ZFSStatus(LumaUI.Text):
             else:
                 self.backgroundColor = (255, 0, 0)
             self.dirty = True
+
+def CtoF(c):
+    return (c * 1.8) + 32
 
 def createUI():
     
@@ -136,29 +140,29 @@ def createUI():
     card.add(w)
     y += incr
  
-    w = LumaUI.Text('CPU Temp: {:.0f}' + u"\N{DEGREE SIGN}", font = font12, valign = 'center')
-    w.addValue(cpu, 'temperature')
+    w = LumaUI.Text('CPU Temp: {:.0f}' + u"\N{DEGREE SIGN}F", font = font12, valign = 'center')
+    w.addValue(cpu, ('temperature', CtoF))
     w.position = (0, y)
     w.size = (128, h)
     card.add(w)
     y += incr
 
-    w = LumaUI.Text('Disk 1 Temp: {:.0f}' + u"\N{DEGREE SIGN}", font = font12, valign = 'center')
-    w.addValue(disk1, 'temperature')
+    w = LumaUI.Text('Disk 1 Temp: {:.0f}' + u"\N{DEGREE SIGN}F", font = font12, valign = 'center')
+    w.addValue(disk1, ('temperature', CtoF))
     w.position = (0, y)
     w.size = (128, h)
     card.add(w)
     y += incr
 
-    w = LumaUI.Text('Disk 2 Temp: {:.0f}' + u"\N{DEGREE SIGN}", font = font12, valign = 'center')
-    w.addValue(disk2, 'temperature')
+    w = LumaUI.Text('Disk 2 Temp: {:.0f}' + u"\N{DEGREE SIGN}F", font = font12, valign = 'center')
+    w.addValue(disk2, ('temperature', CtoF))
     w.position = (0, y)
     w.size = (128, h)
     card.add(w)
     y += incr
 
-    w = LumaUI.Text('Disk 3 Temp: {:.0f}' + u"\N{DEGREE SIGN}", font = font12, valign = 'center')
-    w.addValue(disk3, 'temperature')
+    w = LumaUI.Text('Disk 3 Temp: {:.0f}' + u"\N{DEGREE SIGN}F", font = font12, valign = 'center')
+    w.addValue(disk3, ('temperature', CtoF))
     w.position = (0, y)
     w.size = (128, h)
     card.add(w)
